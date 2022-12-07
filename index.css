@@ -1,0 +1,21 @@
+.div1{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.div2{
+    width: 200px;
+    position: fixed;
+    height: auto;
+    overflow: auto;
+}
+.div2 a {
+    display: block;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+  }
+.wrapper{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+  }
