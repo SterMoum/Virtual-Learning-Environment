@@ -86,7 +86,7 @@ html,body{
 }
 #h2-style{
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  color: black;
 }
 
 label{
@@ -121,4 +121,9 @@ textarea{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+}
+.tab1 {
+  display: inline-block;
+  width: 150px;
+  
 }
