@@ -11,26 +11,26 @@
                 <h1>Επικοινωνία</h1>
             </div>
             <div class="sidebar">
-                <a href="index.html">
-                    <button class="button-sidebar" role="button">Αρχική Σελίδα</button>
-                </a><br>
-            
-                <a href="announcement.html"> 
-                    <button class="button-sidebar" role="button">Ανακοινώσεις</button>    
-                </a><br>
-            
-                <a href="communication.html">
-                    <button class="button-sidebar" role="button">Επικοινωνία</button>   
-                </a><br>
-            
-                <a href="documents.html">
-                    <button class="button-sidebar" role="button">Έγγραφα μαθήματος</button>
-                </a><br>
-            
-                <a href="homework.html"> 
-                    <button class="button-sidebar" role="button">Εργασίες</button>
-                </a>
-            </div>
+                    <a href="index.php">
+                        <button class="button-sidebar" role="button">Αρχική Σελίδα</button>
+                    </a><br>
+                
+                    <a href="announcement.php"> 
+                        <button class="button-sidebar" role="button">Ανακοινώσεις</button>    
+                    </a><br>
+                
+                    <a href="communication.php">
+                        <button class="button-sidebar" role="button">Επικοινωνία</button>   
+                    </a><br>
+                
+                    <a href="documents.php">
+                        <button class="button-sidebar" role="button">Έγγραφα μαθήματος</button>
+                    </a><br>
+                
+                    <a href="homework.php"> 
+                        <button class="button-sidebar" role="button">Εργασίες</button>
+                    </a>
+                </div>
             <div class="main-content">
                 <h2 class="h2-style">
                     Μπορείτε να επικοινωνήσετε με τον διδάσκοντα είτε μέσω της web φόρμας 
