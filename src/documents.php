@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../../src/css/style.css">
+        <link rel="stylesheet" href="./style.css">
         <title>Documents</title>
     </head>
     <body>
@@ -13,7 +13,7 @@
                     <h1>Έγγραφα μαθήματος</h1>
                 </div>
                 <div class="sidebar">
-                    <a href="index.php">
+                    <a href="homepage.php">
                         <button class="button-sidebar" role="button">Αρχική Σελίδα</button>
                     </a><br>
                 

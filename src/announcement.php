@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../../src/css/style.css" />
-        <title>index</title>
+        <link rel="stylesheet" href="./style.css" />
+        <title>announcements</title>
     </head>
 
     <body>
@@ -15,7 +15,7 @@
                     <h1>Ανακοινώσεις</h1>
                 </div>
                 <div class="sidebar">
-                    <a href="index.php">
+                    <a href="homepage.php">
                         <button class="button-sidebar" role="button">Αρχική Σελίδα</button>
                     </a><br>
                 

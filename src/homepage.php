@@ -3,8 +3,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../css/style.css" />
-        <title>index</title>
+        <link rel="stylesheet" href="./style.css" />
+        <title>Homepage</title>
     </head>
 
     <body>
@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="sidebar">
-                    <a href="index.php">
+                    <a href="homepage.php">
                         <button class="button-sidebar" role="button">Αρχική Σελίδα</button>
                     </a><br>
                 
@@ -55,7 +55,7 @@
 
                     <font size="+3"><b>Εργασίες:</b> Θα βρείτε όλες τις εργασίες που αναρτώνται ανά πάσα στιγμή</font> <br> <br>
                         
-                        <img src="../../media/c_1.png" class="image-homepage">
+                        <img src="../media/c_1.png" class="image-homepage">
                 </div>
             </div>
         </body>

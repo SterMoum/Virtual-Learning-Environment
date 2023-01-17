@@ -2,6 +2,19 @@ html,body{
   height: 100%;
   margin: 0;
   overflow-x: hidden;
+  font-family: Bradley Hand;
+}
+p{
+  font-family: Inter, sans-serif;
+}
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  background-color: #CDC8A7;
+
 }
 
 .container{
@@ -139,3 +152,6 @@ textarea{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
   font-size: large;
 }
+
+/*for login ui */
+
