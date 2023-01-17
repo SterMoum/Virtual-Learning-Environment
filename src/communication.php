@@ -2,9 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./style.css?v=<?php echo time(); ?>">
         <title>Communication</title>
     </head>
+    
     <body>
         <div class="container">
             <div class="page-title">

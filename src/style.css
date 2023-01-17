@@ -2,11 +2,9 @@ html,body{
   height: 100%;
   margin: 0;
   overflow-x: hidden;
-  font-family: Bradley Hand;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
-p{
-  font-family: Inter, sans-serif;
-}
+
 .login{
   display: flex;
   justify-content: center;
@@ -35,7 +33,7 @@ p{
     border: 2px solid black;
   }
   .main-content{
-    background-color: #E3D87E;
+    background-color: #CDC8A7;
     flex: 1 1;
     flex-wrap: nowrap;
     border: 2px solid black;
@@ -153,5 +151,4 @@ textarea{
   font-size: large;
 }
 
-/*for login ui */
 
