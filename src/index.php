@@ -7,16 +7,19 @@ session_start();
         $password = $_POST['password'];
 
         //connect to database
-        connectToServer($conn);
+        connectToDb($conn);
+
         
         $query = "select * from users where loginame = '$loginame'";
-        $result = mysqli_query($conn, $query);
+        $result = mysqli_query($conn, $query); 
 
         if ($result) {
             if ($result && mysqli_num_rows($result) > 0){
                 $user_data = mysqli_fetch_assoc($result);
                 if ($user_data['password'] == $password) {
                     //succesfull login
+                    $_SESSION['username'] = $loginame;
+                    $_SESSION['role'] = $user_data['role'];
                     header("Location: homepage.php");
                     die;
                 }

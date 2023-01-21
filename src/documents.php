@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['username'])){ //if login in session is not set
+        header("Location: index.php");
+    }   
+
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +20,7 @@
         <div class="container">
                 <div class="page-title">
                     <h1>Έγγραφα μαθήματος</h1>
+                    <a style="float:right" href="./logout.php">Logout</a>
                 </div>
                 <div class="sidebar">
                     <a href="homepage.php">
@@ -34,6 +44,15 @@
                     </a>
                 </div>
                 <div class="main-content">
+
+                    <?php
+                        if ($_SESSION['role'] == "Tutor"){
+                            ?>
+                            <a style="font-size: larger;" href="./addAnnouncement.php">Προσθήκη νέου Εγγράφου</a> <br> <br>
+                            <?php
+                        }
+                    ?>
+
                     <h2 class="h2-style">Η γλώσσα C</h2>
 
                     <div class="center">

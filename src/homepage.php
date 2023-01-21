@@ -1,4 +1,12 @@
 <!--Μπορείτε να δείτε online τη σελίδα και στο https://users.auth.gr/stermoum/ergasiaEPDmerosA/index.html -->
+<?php
+session_start();
+    if(!isset($_SESSION['username'])){ //if login in session is not set
+        header("Location: index.php");
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +21,7 @@
 
                 <div class="page-title">
                     <h1>Αρχική Σελίδα</h1>
+                    <a style="float:right" href="./logout.php">Logout</a>
                 </div>
 
                 <div class="sidebar">

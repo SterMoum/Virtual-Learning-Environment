@@ -1,3 +1,11 @@
+<?php
+session_start();
+    include("functions.php");
+    if(!isset($_SESSION['username'])){ //if login in session is not set
+        header("Location: index.php");
+    }
+    connectToDb($conn);
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +21,7 @@
         <div class="container">
                 <div class="page-title">
                     <h1>Ανακοινώσεις</h1>
+                    <a style="float:right" href="./logout.php">Logout</a>
                 </div>
                 <div class="sidebar">
                     <a href="homepage.php">
@@ -36,34 +45,48 @@
                     </a>
                 </div>
                 <div class="main-content">
+                <?php
+                    if ($_SESSION['role'] == "Tutor"){
+                        ?>
+                        <a style="font-size: larger;" href="./addAnnouncement.php">Προσθήκη νέας Ανακοίνωσης</a> <br> <br>
+                        <?php
+                    }
 
-                <h2 class="h2-style">Ανακοίνωση 1</h2>
-                <div class="center">
-                    <font size="+2"><b>Ημερομηνία</b>: 25/9/2022 </font> <br> <br>
-                    <font size="+2"><b>Θέμα</b>: Έναρξη μαθημάτων </font> <br> <br>
-                    <font size="+2">Τα μαθήματα αρχίζουν την Δευτέρα 3/10/2022 </font>
-                </div>
-                <br><br>
-                <hr>
+                ?>
 
-                <h2 class="h2-style">Ανακοίνωση 2</h2>
-                <div class="center">
-                    <font size="+2"><b>Ημερομηνία</b>: 25/10/2022 </font> <br> <br>
-                    <font size="+2"><b>Θέμα</b>: Ανάρτηση Εργασίας </font> <br> <br>
-                    <font size="+2">η 1η εργασία έχει ανακοινωθεί στην ιστοσελίδα Εργασίες </font>
-                </div>
-                <br><br>
-                <hr>
+                <?php
+                    
+                    $sql = "select id,date,subject,message from announcements";
+                    $result = $conn->query($sql);
+                    
+                    if($result->num_rows > 0){
+                        while($row = $result->fetch_assoc()){
+                             ?> 
+                             <h2 class="h2-style">Ανακοίνωση <?php echo $row['id'] ?> </h2>
+                             <?php
+                                if ($_SESSION['role'] == "Tutor") {
+                                    ?> 
+                                    <a style="font-size: larger;" href="./addAnnouncement.php">[Επεξεργασία]</a>
+                                    <a style="font-size: larger;" href="./addAnnouncement.php">[Διαγραφη]</a> 
+                                    <?php
+                                }
+                             
+                             ?>
+                             
+                             <div class="center">
+                                <font size="+2"><b>Ημερομηνία</b>: <?php echo $row['date'] ?> </font> <br> <br>
+                                <font size="+2"><b>Θέμα</b>: <?php echo $row['subject'] ?> </font> <br> <br>
+                                <font size="+2"><?php echo $row['message'] ?> </font>
+                            </div>
+                            <br><br>
+                            <hr>
+                            <?php 
+                        }
+                    } else{
 
-                <h2 class="h2-style">Ανακοίνωση 3</h2>
-                <div class="center">
-                    <font size="+2"><b>Ημερομηνία</b>: 25/11/2022 </font> <br> <br>
-                    <font size="+2"><b>Θέμα</b>: Αναβολή μαθήματος </font> <br> <br>
-                    <font size="+2">Σας ενημερώνω πως το μάθημα στις 30/11/2022 δε θα διεξαχθεί 
-                        λόγω κολλύματος του διδάσκοντα </font> 
-                </div>
-                <br><br>
-                <hr>
+                        ?> <h2 class="h2-style">ΔΕΝ ΥΠΑΡΧΟΥΝ ΑΝΑΚΟΙΝΩΣΕΙΣ </h2> <?php 
+                    }
+                    ?>
                 
                 <a style="float: right; color: black;" href="#top"><font size="+3">Back to top</font></a>
 
