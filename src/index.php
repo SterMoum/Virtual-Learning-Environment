@@ -1,7 +1,7 @@
 <?php 
 session_start();
     include("functions.php");
- 
+
     if (isset($_POST['submitButton']) && $_SERVER['REQUEST_METHOD'] == "POST"){ //check if form was submitted
         $loginame = $_POST['loginame'];
         $password = $_POST['password'];

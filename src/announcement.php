@@ -51,12 +51,10 @@ session_start();
                         <a style="font-size: larger;" href="./addAnnouncement.php">Προσθήκη νέας Ανακοίνωσης</a> <br> <br>
                         <?php
                     }
-
                 ?>
-
                 <?php
                     
-                    $sql = "select id,date,subject,message from announcements";
+                    $sql = "select * from announcements";
                     $result = $conn->query($sql);
                     
                     if($result->num_rows > 0){
@@ -65,10 +63,10 @@ session_start();
                              <h2 class="h2-style">Ανακοίνωση <?php echo $row['id'] ?> </h2>
                              <?php
                                 if ($_SESSION['role'] == "Tutor") {
-                                    ?> 
-                                    <a style="font-size: larger;" href="./addAnnouncement.php">[Επεξεργασία]</a>
-                                    <a style="font-size: larger;" href="./addAnnouncement.php">[Διαγραφη]</a> 
-                                    <?php
+                                     
+                                    echo "<a style='font-size: larger;' href='./editAnnouncement.php?id=$row[id]'>[Επεξεργασία] </a>";
+                                    echo " <a style='font-size: larger;' href='./deleteAnnouncement.php?id=$row[id]'>[Διαγραφη]</a> "; 
+            
                                 }
                              
                              ?>

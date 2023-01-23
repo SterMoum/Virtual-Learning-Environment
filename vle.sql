@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `announcements` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `Date` date NOT NULL,
   `Subject` varchar(100) NOT NULL,
   `Message` varchar(10000) NOT NULL
@@ -41,7 +41,7 @@ CREATE TABLE `announcements` (
 --
 
 CREATE TABLE `assignments` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `goals` varchar(1000) NOT NULL,
   `file_location` varchar(100) NOT NULL,
   `required_files` varchar(100) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `assignments` (
 --
 
 CREATE TABLE `documents` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `document_title` varchar(100) NOT NULL,
   `Description` varchar(200) NOT NULL,
   `file_location` varchar(100) NOT NULL
