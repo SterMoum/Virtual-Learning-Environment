@@ -51,8 +51,6 @@ session_start();
                         <a style="font-size: larger;" href="./addAnnouncement.php">Προσθήκη νέας Ανακοίνωσης</a> <br> <br>
                         <?php
                     }
-                ?>
-                <?php
                     
                     $sql = "select * from announcements";
                     $result = $conn->query($sql);

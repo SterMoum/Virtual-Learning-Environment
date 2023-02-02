@@ -2,6 +2,11 @@
 session_start();
     include("functions.php");
 
+    if(isset($_SESSION['username'])) {
+        header("Location: homepage.php"); // redirects them to homepage
+        exit; // for good measure
+   }
+
     if (isset($_POST['submitButton']) && $_SERVER['REQUEST_METHOD'] == "POST"){ //check if form was submitted
         $loginame = $_POST['loginame'];
         $password = $_POST['password'];
@@ -21,7 +26,9 @@ session_start();
                     $_SESSION['username'] = $loginame;
                     $_SESSION['role'] = $user_data['role'];
                     header("Location: homepage.php");
+                    //session_destroy();
                     die;
+                    
                 }
             }
         }    
