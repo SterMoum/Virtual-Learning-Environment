@@ -42,7 +42,7 @@ session_start();
         <title>Login</title>
     </head>
     <body>
-        <div class="login">
+        <div class="form">
             <form style="border: 2px solid black;" action="" method="post">
                 <font size="+2"> ΠΙΣΤΟΠΟΙΗΣΗ </font> <br><br>
 

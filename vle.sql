@@ -72,7 +72,7 @@ CREATE TABLE `users` (
   `lastName` varchar(255) NOT NULL,
   `loginame` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` set('Student','Tutor') NOT NULL
+  `role` enum('Student','Tutor') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

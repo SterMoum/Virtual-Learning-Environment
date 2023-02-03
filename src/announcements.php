@@ -5,6 +5,10 @@ session_start();
         header("Location: index.php");
     }
     $_SESSION['table'] = 'announcements';
+    $_SESSION['first'] = 'date';
+    $_SESSION['second'] = 'subject';
+    $_SESSION['third'] = 'message';
+
     connectToDb($conn);
 ?>
 
@@ -51,7 +55,7 @@ session_start();
                     
                     if ($_SESSION['role'] == "Tutor"){
                         ?>
-                        <a style="font-size: larger;" href="./addAnnouncement.php">Προσθήκη νέας Ανακοίνωσης</a> <br> <br>
+                        <a style="font-size: larger;" href="./add.php">Προσθήκη νέας Ανακοίνωσης</a> <br> <br>
                         <?php
                     }
                     
@@ -65,7 +69,7 @@ session_start();
                              <?php
                                 if ($_SESSION['role'] == "Tutor") {
                                      
-                                    echo "<a style='font-size: larger;' href='./editAnnouncement.php?id=$row[id]'>[Επεξεργασία] </a>";
+                                    echo "<a style='font-size: larger;' href='./edit.php?id=$row[id]'>[Επεξεργασία] </a>";
                                     echo " <a style='font-size: larger;' href='./delete.php?id=$row[id]'>[Διαγραφη]</a> "; 
             
                                 }

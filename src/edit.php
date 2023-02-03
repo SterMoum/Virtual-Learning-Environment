@@ -4,22 +4,29 @@ session_start();
     connectToDb($conn);
 
     $id = "";
-    $date = "";
-    $subject = "";
-    $message = "";
+    $first = "";
+    $second = "";
+    $third = "";
+    $fourth = "";
+
+    $table = $_SESSION['table'];
+    $first_column = $_SESSION['first'];
+    $second_column = $_SESSION['second'];
+    $third_column = $_SESSION['third'];
+    
+    if (isset($_SESSION['fourth'])){
+        $fourth_column = $_SESSION['fourth'];
+    }
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if (!isset($_GET["id"])){
-            header("Location: announcement.php");
+            header("Location: $table.php");
             exit;
         }
-      
-
+    
         $id = $_GET["id"];
-        
-        
 
-        $sql = "SELECT * FROM announcements WHERE id=$id";
+        $sql = "SELECT * FROM $table WHERE id=$id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
 
@@ -27,32 +34,33 @@ session_start();
             header("Location: index.php");
             exit;
         }
-         
-        $date = $row['date'];
-        $subject = $row['subject'];
-        $message = $row['message'];
+
+        $first = $row[$first_column];
+        $second = $row[$second_column];
+        $third = $row[$third_column];
 
     }
     else {
             $id = $_POST["id"];
-            $date = $_POST["date"];
-            $subject = $_POST["subject"];
-            $message = $_POST["message"];
+            $first = $_POST["first"];
+            $second = $_POST["second"];
+            $third = $_POST["third"];
+
             do{
-                if(empty($id) || empty($date) || empty($subject) || empty($message)){
+                if(empty($id) || empty($first) || empty($second) || empty($third)){
                     $errorMessage = "All fields are required";
                     break;
                 }
     
-                $sql = "UPDATE announcements 
-                SET date='$date', subject='$subject', message='$message'
+                $sql = "UPDATE $table 
+                SET $first_column ='$first', $second_column ='$second', $third_column ='$third'
                 WHERE id='$id' ";
     
                 $result = $conn->query($sql);
     
                 if ($result) {
                     echo "record edited successfully";
-                    header("Location: announcements.php");
+                    header("Location: $table.php");
                     die;
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -78,14 +86,14 @@ session_start();
             <form  action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
-                <label for="date">Ημερομηνία</label>
-                <input style="font-size:20px;" type="text" id="date" name="date" value=<?php echo $date ?> ><br><br>
+                <label for="first"> <?php echo $first_column?> </label>
+                <textarea id="first" name="first"> <?php echo $first?> </textarea> <br><br>
 
-                <label for="subject">Θέμα</label>
-                <input style="font-size:20px;" type="text" id="subject" name="subject" value=<?php echo $subject ?>>  <br><br>
+                <label for="second"> <?php echo $second_column?> </label>
+                <textarea id="second" name="second"> <?php echo $second ?> </textarea> <br><br>
 
-                <label for="message">Μήνυμα</label>
-                <input style="font-size:20px;" type="text" id="message" name="message" value=<?php echo $message ?>> <br><br>
+                <label for="third"> <?php echo $third_column?> </label>
+                <textarea id="third" name="third"> <?php echo $third ?> </textarea> <br><br>
 
                 <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton"> <br> <br>
             </form>

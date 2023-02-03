@@ -5,6 +5,9 @@ include("functions.php");
         header("Location: index.php");
     }
     $_SESSION['table'] = 'documents';
+    $_SESSION['first'] = 'title';
+    $_SESSION['second'] = 'description';
+    $_SESSION['third'] = 'location';
     connectToDb($conn);
 ?>
 
@@ -49,7 +52,7 @@ include("functions.php");
                     <?php
                         if ($_SESSION['role'] == "Tutor"){
                             ?>
-                            <a style="font-size: larger;" href="./addDocument.php">Προσθήκη νέου Εγγράφου</a> <br> <br>
+                            <a style="font-size: larger;" href="./add.php">Προσθήκη νέου Εγγράφου</a> <br> <br>
                             <?php
                         }
                     
@@ -64,7 +67,7 @@ include("functions.php");
                              <?php
                                 if ($_SESSION['role'] == "Tutor") {
                                      
-                                    echo "<a style='font-size: larger;' href='./editAnnouncement.php?id=$row[id]'>[Επεξεργασία] </a>";
+                                    echo "<a style='font-size: larger;' href='./edit.php?id=$row[id]'>[Επεξεργασία] </a>";
                                     echo " <a style='font-size: larger;' href='./delete.php?id=$row[id]'>[Διαγραφη]</a> "; 
             
                                 }

@@ -47,7 +47,7 @@ session_start();
                     <?php
                         if ($_SESSION['role'] == "Tutor"){
                             ?>
-                            <a style="font-size: larger;" href="./addAnnouncement.php">Προσθήκη νέας Εργασίας</a> <br> <br>
+                            <a style="font-size: larger;" href="./add.php">Προσθήκη νέας Εργασίας</a> <br> <br>
                             <?php
                         }
 

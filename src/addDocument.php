@@ -32,22 +32,24 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./style.css?v=<?php echo time(); ?>" />
-        <title>Login</title>
+        <title>Add Document</title>
     </head>
 
     <body>
-        <form  action="" method="post">
-            <label for="title">Τίτλος</label>
-            <input style="font-size:20px;" type="text" id="title" name="title"><br><br>
+        <div class="form">
+            <form  action="" method="post">
+                <label for="title">Τίτλος</label>
+                <textarea id="title" name="title"></textarea> <br><br>
 
-            <label for="description">Περιγραφή</label>
-            <input style="font-size:20px;" type="text" id="description" name="description"> <br><br>
+                <label for="description">Περιγραφή</label>
+                <textarea id="description" name="description"></textarea> <br><br>
 
-            <label for="location">Τοποθεσία</label>
-            <input style="font-size:20px;" type="text" id="location" name="location"> <br><br>
+                <label for="location">Τοποθεσία</label>
+                <textarea id="location" name="location"></textarea> <br><br>
 
-            <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton"> <br> <br>
-        </form>
+                <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton"> <br> <br>
+            </form>
+        </div>
 
 
 
