@@ -52,7 +52,7 @@ session_start();
     
                 if ($result) {
                     echo "record edited successfully";
-                    header("Location: announcement.php");
+                    header("Location: announcements.php");
                     die;
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;

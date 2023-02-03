@@ -5,19 +5,19 @@ session_start();
         isset($_POST['submitButton']) &&
         $_SERVER['REQUEST_METHOD'] == "POST"
         ) { //check if form was submitted
-            $date = $_POST["date"];
-            $subject = $_POST["subject"];
-            $message = $_POST["message"];
+            $title = $_POST["title"];
+            $description = $_POST["description"];
+            $location = $_POST["location"];
 
             connectToDb($conn);
 
-            $sql = "INSERT INTO announcements (Date, Subject, Message)
-            VALUES ('$date', '$subject', '$message')";
+            $sql = "INSERT INTO documents (title, description, location)
+            VALUES ('$title', '$description', '$location')";
 
             if ($conn->query($sql)) {
                 echo "New record created successfully";
 
-                header("Location: announcements.php");
+                header("Location: documents.php");
                 die;
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
@@ -37,14 +37,14 @@ session_start();
 
     <body>
         <form  action="" method="post">
-            <label for="date">Ημερομηνία</label>
-            <input style="font-size:20px;" type="text" id="date" name="date" placeholder="yyyy-mm-dd"><br><br>
+            <label for="title">Τίτλος</label>
+            <input style="font-size:20px;" type="text" id="title" name="title"><br><br>
 
-            <label for="subject">Θέμα</label>
-            <input style="font-size:20px;" type="text" id="subject" name="subject"> <br><br>
+            <label for="description">Περιγραφή</label>
+            <input style="font-size:20px;" type="text" id="description" name="description"> <br><br>
 
-            <label for="message">Μήνυμα</label>
-            <input style="font-size:20px;" type="text" id="message" name="message"> <br><br>
+            <label for="location">Τοποθεσία</label>
+            <input style="font-size:20px;" type="text" id="location" name="location"> <br><br>
 
             <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton"> <br> <br>
         </form>

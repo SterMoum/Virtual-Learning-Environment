@@ -4,8 +4,10 @@ session_start();
     if(!isset($_SESSION['username'])){ //if login in session is not set
         header("Location: index.php");
     }
+    $_SESSION['table'] = 'announcements';
     connectToDb($conn);
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +30,7 @@ session_start();
                         <button class="button-sidebar" role="button">Αρχική Σελίδα</button>
                     </a><br>
                 
-                    <a href="announcement.php"> 
+                    <a href="announcements.php"> 
                         <button class="button-sidebar" role="button">Ανακοινώσεις</button>    
                     </a><br>
                 
@@ -46,6 +48,7 @@ session_start();
                 </div>
                 <div class="main-content">
                 <?php
+                    
                     if ($_SESSION['role'] == "Tutor"){
                         ?>
                         <a style="font-size: larger;" href="./addAnnouncement.php">Προσθήκη νέας Ανακοίνωσης</a> <br> <br>
@@ -63,7 +66,7 @@ session_start();
                                 if ($_SESSION['role'] == "Tutor") {
                                      
                                     echo "<a style='font-size: larger;' href='./editAnnouncement.php?id=$row[id]'>[Επεξεργασία] </a>";
-                                    echo " <a style='font-size: larger;' href='./deleteAnnouncement.php?id=$row[id]'>[Διαγραφη]</a> "; 
+                                    echo " <a style='font-size: larger;' href='./delete.php?id=$row[id]'>[Διαγραφη]</a> "; 
             
                                 }
                              

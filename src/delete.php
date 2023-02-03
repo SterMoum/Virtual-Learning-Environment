@@ -1,4 +1,5 @@
 <?php
+session_start();
     include("functions.php");
 
     if(isset($_GET["id"])){
@@ -7,12 +8,15 @@
         //connect to db
         connectToDb($conn);
 
-        $sql = "DELETE FROM announcements WHERE id='$id' ";
+        $table = $_SESSION['table'];
+        
+
+        $sql = "DELETE FROM $table WHERE id='$id' ";
         $conn->query($sql);
 
     }
 
-    header("Location: announcement.php");
+    header("Location: $table.php");
     exit;
 
 ?>

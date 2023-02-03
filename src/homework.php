@@ -26,7 +26,7 @@ session_start();
                         <button class="button-sidebar" role="button">Αρχική Σελίδα</button>
                     </a><br>
                 
-                    <a href="announcement.php"> 
+                    <a href="announcements.php"> 
                         <button class="button-sidebar" role="button">Ανακοινώσεις</button>    
                     </a><br>
                 

@@ -3,8 +3,6 @@ session_start();
     if(!isset($_SESSION['username'])){ //if login in session is not set
         header("Location: index.php");
     }
-    
-
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +24,7 @@ session_start();
                         <button class="button-sidebar" role="button">Αρχική Σελίδα</button>
                     </a><br>
                 
-                    <a href="announcement.php"> 
+                    <a href="announcements.php"> 
                         <button class="button-sidebar" role="button">Ανακοινώσεις</button>    
                     </a><br>
                 
