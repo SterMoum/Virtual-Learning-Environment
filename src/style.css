@@ -2,7 +2,8 @@ html,body{
   height: 100%;
   margin: 0;
   overflow-x: hidden;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+
 }
 
 .form{
