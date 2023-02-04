@@ -67,7 +67,7 @@ session_start();
                     
                     $sql = "select * from assignments";
                     $result = $conn->query($sql);
-                    
+                    //$_SESSION['id'] = 1;
                     if($result->num_rows > 0){
                         while($row = $result->fetch_assoc()){
                             $_SESSION['id'] = $row['id'] + 1;
@@ -87,7 +87,7 @@ session_start();
                                 <font size="+2"><b>Στόχοι</b>: Οι στόχοι της εργασίας είναι: <br> <?php echo $row['goals'] ?> </font> <br> <br>
                                 <font size="+2"><b>Εκφώνηση</b>:Κατεβάστε την εκφώνηση απο <a href="../media/<?php echo $row["location"]?>.doc">εδώ</a></font> <br> <br> 
                                 <font size="+2"><b>Παραδοτέα:</b><br><?php echo $row['required_files'] ?> </font> <br> <br>
-                                <font size="+2" style="color: red;"><b>Ημερομηνία Παράδοσης:</b><br><?php echo $row['date'] ?> </font> <br> <br>
+                                <font size="+2" style="color: red;"><b>Ημερομηνία Παράδοσης: </b><?php echo $row['date'] ?> </font> <br> <br>
                             </div>
                             <br><br>
                             <hr>

@@ -36,25 +36,20 @@ session_start();
     </head>
 
     <body>
-        <div class="form">
-            <form  action="" method="post">
-                <label for="title">Τίτλος</label>
-                <textarea id="title" name="title"></textarea> <br><br>
+        <form  action="" method="post">
 
-                <label for="description">Περιγραφή</label>
-                <textarea id="description" name="description"></textarea> <br><br>
+            <input type="hidden" name="id" value="<?php echo $id?>">
 
-                <label for="location">Τοποθεσία</label>
-                <textarea id="location" name="location"></textarea> <br><br>
+            <label for="title">Τίτλος</label>
+            <textarea id="title" name="title"></textarea><br><br>
 
-                <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton"> <br> <br>
-            </form>
-        </div>
+            <label for="description">Περιγραφή</label>
+            <textarea id="description" name="description"></textarea><br><br>
 
+            <label for="location">Τοποθεσία</label>
+            <textarea id="location" name="location"></textarea><br><br>
 
-
+            <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton"> <br> <br>
+        </form>
     </body>
-
-
-
 </html>

@@ -17,7 +17,7 @@ session_start();
     
         $id = $_GET["id"];
 
-        $sql = "SELECT * FROM assingments WHERE id=$id";
+        $sql = "SELECT * FROM assignments WHERE id=$id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
 
@@ -45,7 +45,7 @@ session_start();
                     break;
                 }
     
-                $sql = "UPDATE documents 
+                $sql = "UPDATE assignments 
                 SET goals ='$goals', location ='$location', required_files ='$required_files', date = '$date'
                 WHERE id='$id' ";
     
