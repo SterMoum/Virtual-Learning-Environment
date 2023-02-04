@@ -4,13 +4,14 @@ session_start();
     connectToDb($conn);
 
     $id = "";
-    $title = "";
-    $description = "";
+    $goals = "";
     $location = "";
+    $required_files = "";
+    $date = "";
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if (!isset($_GET["id"])){
-            header("Location: homework.php");
+            header("Location: assignment.php");
             exit;
         }
     
@@ -25,32 +26,34 @@ session_start();
             exit;
         }
 
-        $title = $row['title'];
-        $description = $row['description'];
+        $goals = $row['goals'];
         $location = $row['location'];
+        $required_files = $row['required_files'];
+        $date = $row['date'];
 
     }
     else {
             $id = $_POST["id"];
-            $title = $_POST["title"];
-            $description = $_POST["description"];
+            $goals = $_POST["goals"];
             $location = $_POST["location"];
+            $required_files = $_POST["required_files"];#
+            $date = $_POST["date"];
 
             do{
-                if(empty($id) || empty($title) || empty($description) || empty($location)){
+                if(empty($id) || empty($goals) || empty($location) || empty($required_files) || empty($date)){
                     $errorMessage = "All fields are required";
                     break;
                 }
     
                 $sql = "UPDATE documents 
-                SET title ='$title', description ='$description', location ='$location'
+                SET goals ='$goals', location ='$location', required_files ='$required_files', date = '$date'
                 WHERE id='$id' ";
     
                 $result = $conn->query($sql);
     
                 if ($result) {
                     echo "record edited successfully";
-                    header("Location: documents.php");
+                    header("Location: assignments.php");
                     die;
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -76,14 +79,17 @@ session_start();
             <form  action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
-                <label for="title"> <?php echo "Title"?> </label>
-                <textarea id="title" name="title"> <?php echo $title?> </textarea> <br><br>
+                <label for="goals"> <?php echo "Goals"?> </label>
+                <textarea id="goals" name="goals"> <?php echo $goals?> </textarea> <br><br>
 
-                <label for="description"> <?php echo "Description"?> </label>
-                <textarea id="description" name="description"> <?php echo $description ?> </textarea> <br><br>
-
-                <label for="location"> <?php echo "file Name"?> </label>
+                <label for="location"> <?php echo "File Name"?> </label>
                 <textarea id="location" name="location"> <?php echo $location ?> </textarea> <br><br>
+
+                <label for="required_files"> <?php echo "Απαιτούμενα αρχεία"?> </label>
+                <textarea id="required_files" name="required_files"> <?php echo $required_files ?> </textarea> <br><br>
+
+                <label for="date"> <?php echo "Ημερομηνία Παράδοσης"?> </label>
+                <textarea id="date" name="date"> <?php echo $date ?> </textarea> <br><br>
 
                 <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton"> <br> <br>
             </form>
