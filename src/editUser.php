@@ -98,7 +98,7 @@ session_start();
                 <label for="tutor">Tutor</label>
                 <input type="radio" id="tutor" name="role" value="Tutor"
                         <?php if($role == "Tutor"){
-                                ?>checked <?php
+                                ?> checked <?php
                         }?>> <br><br>
                 
 

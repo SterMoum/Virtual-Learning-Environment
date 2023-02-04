@@ -23,7 +23,8 @@ session_start();
         <div class="container">
                 <div class="page-title">
                     <h1>Εργασίες</h1>
-                    <a style="float:right" href="./logout.php">Logout</a>
+                    <a href="./logout.php" style="float:right;">
+                        <button class="button-sidebar" role="button">Logout</button></a>
                 </div>
                 <div class="sidebar">
                     <a href="homepage.php">
@@ -83,12 +84,12 @@ session_start();
                              
                              ?>
                              
-                             <div class="center">
-                                <font size="+2"><b>Στόχοι</b>: Οι στόχοι της εργασίας είναι: <br> <?php echo $row['goals'] ?> </font> <br> <br>
-                                <font size="+2"><b>Εκφώνηση</b>:Κατεβάστε την εκφώνηση απο <a href="../media/<?php echo $row["location"]?>.doc">εδώ</a></font> <br> <br> 
-                                <font size="+2"><b>Παραδοτέα:</b><br><?php echo $row['required_files'] ?> </font> <br> <br>
-                                <font size="+2" style="color: red;"><b>Ημερομηνία Παράδοσης: </b><?php echo $row['date'] ?> </font> <br> <br>
-                            </div>
+                            
+                            <font class="center"><b>Στόχοι</b>: Οι στόχοι της εργασίας είναι: <br> <?php echo $row['goals'] ?> </font><br>
+                            <font class="center"><b>Εκφώνηση</b>:Κατεβάστε την εκφώνηση απο <a href="../media/<?php echo $row["location"]?>.doc"> εδώ </a></font><br>
+                            <font class="center"><b>Παραδοτέα:</b><?php echo $row['required_files'] ?> </font><br>
+                            <font class="center" style="color: red;"><b>Ημερομηνία Παράδοσης: </b><?php echo $row['date'] ?> </font><br>
+                          
                             <br><br>
                             <hr>
                             <?php 

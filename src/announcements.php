@@ -12,7 +12,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./style.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="./style.css?v=<?php echo time() ?>">
         <title>announcements</title>
     </head>
 
@@ -23,7 +23,8 @@ session_start();
         <div class="container">
                 <div class="page-title">
                     <h1>Ανακοινώσεις</h1>
-                    <a style="float:right" href="./logout.php">Logout</a>
+                    <a href="./logout.php" style="float:right;">
+                        <button class="button-sidebar" role="button">Logout</button></a>
                 </div>
                 <div class="sidebar">
                     <a href="homepage.php">
@@ -79,12 +80,12 @@ session_start();
                                 }
                              
                              ?>
-                             
-                             <div class="center">
-                                <font size="+2"><b>Ημερομηνία</b>: <?php echo $row['date'] ?> </font> <br> <br>
-                                <font size="+2"><b>Θέμα</b>: <?php echo $row['subject'] ?> </font> <br> <br>
-                                <font size="+2"><?php echo $row['message'] ?> </font>
-                            </div>
+                             <br><br>
+
+                            <font class="center"><b>Ημερομηνία</b>: <?php echo $row['date'] ?> </font> <br> <br>
+                            <font class="center"><b>Θέμα</b>: <?php echo $row['subject'] ?> </font> <br> <br>
+                            <font class="center"><?php echo $row['message'] ?> </font> <br> <br>
+                           
                             <br><br>
                             <hr>
                             <?php 
@@ -95,7 +96,7 @@ session_start();
                     }
                     ?>
                 
-                <a style="float: right; color: black;" href="#top"><font size="+3">Back to top</font></a>
+                    <a style="float: right; color: black;" href="#top"><font size="+3">Back to top</font></a>
 
                 </div>
             </div>

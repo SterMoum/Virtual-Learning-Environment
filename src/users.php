@@ -22,7 +22,8 @@ session_start();
 
         <div class="page-title">
             <h1>Διαχείριση Χρηστών</h1>
-            <a style="float:right" href="./logout.php">Logout</a>
+            <a href="./logout.php" style="float:right;">
+                        <button class="button-sidebar" role="button">Logout</button></a>
         </div>
 
         <div class="sidebar">
@@ -87,7 +88,7 @@ session_start();
                                 <td>$password</td> 
                                 <td>$role</td>
                                 <td> <a href='./editUser.php?loginame=$row[loginame]'>[Επεξεργασία] </a>
-                                <td> <a href='./delete.php?loginame=$row[loginame]'>[Διαγραφή] </a>
+                                <td> <a style href='./delete.php?loginame=$row[loginame]'>[Διαγραφή] </a>
                             </tr>";
                 }
                 $result->free();

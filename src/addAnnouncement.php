@@ -38,7 +38,7 @@ session_start();
     <body>
         <div class="form">
             <form  action="" method="post">
-                <input type="hidden" name="id" value="<?php echo $id;?>">
+                <input type="hidden" name="id" value="<?php echo $id?>">
 
                 <label for="date">Ημερομηνία</label>
                 <textarea id="date" name="date" placeholder="yyyy-mm-dd"></textarea> <br><br>

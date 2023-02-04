@@ -21,7 +21,8 @@ include("functions.php");
         <div class="container">
                 <div class="page-title">
                     <h1>Έγγραφα μαθήματος</h1>
-                    <a style="float:right" href="./logout.php">Logout</a>
+                    <a href="./logout.php" style="float:right;">
+                        <button class="button-sidebar" role="button">Logout</button></a>
                 </div>
                 <div class="sidebar">
                     <a href="homepage.php">
@@ -80,10 +81,10 @@ include("functions.php");
                              
                              ?>
                              
-                             <div class="center">
-                                <font size="+2"><b>Περιγραφή</b>: <?php echo $row['description'] ?> </font> <br> <br>
-                                <font size="+2"><a href="../media/<?php echo $row["location"]?>.doc">Download</a></font>
-                            </div>
+                             
+                            <font class="center"><b>Περιγραφή</b>: <?php echo $row['description'] ?> </font> <br> <br>
+                            <font class="center"><a href="../media/<?php echo $row["location"]?>.doc">Download</a></font>
+                            
                             <br><br>
                             <hr>
                             <?php 

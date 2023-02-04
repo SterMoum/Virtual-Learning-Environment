@@ -17,7 +17,8 @@ session_start();
         <div class="container">
             <div class="page-title">
                 <h1>Επικοινωνία</h1>
-                <a style="float:right" href="./logout.php">Logout</a>
+                <a href="./logout.php" style="float:right;">
+                        <button class="button-sidebar" role="button">Logout</button></a>
             </div>
             <div class="sidebar">
                     <a href="homepage.php">
