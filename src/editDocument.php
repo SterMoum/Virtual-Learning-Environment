@@ -4,29 +4,19 @@ session_start();
     connectToDb($conn);
 
     $id = "";
-    $first = "";
-    $second = "";
-    $third = "";
-    $fourth = "";
-
-    $table = $_SESSION['table'];
-    $first_column = $_SESSION['first'];
-    $second_column = $_SESSION['second'];
-    $third_column = $_SESSION['third'];
-    
-    if (isset($_SESSION['fourth'])){
-        $fourth_column = $_SESSION['fourth'];
-    }
+    $title = "";
+    $description = "";
+    $location = "";
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if (!isset($_GET["id"])){
-            header("Location: $table.php");
+            header("Location: documents.php");
             exit;
         }
     
         $id = $_GET["id"];
 
-        $sql = "SELECT * FROM $table WHERE id=$id";
+        $sql = "SELECT * FROM documents WHERE id=$id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
 
@@ -35,32 +25,32 @@ session_start();
             exit;
         }
 
-        $first = $row[$first_column];
-        $second = $row[$second_column];
-        $third = $row[$third_column];
+        $title = $row['title'];
+        $description = $row['description'];
+        $location = $row['location'];
 
     }
     else {
             $id = $_POST["id"];
-            $first = $_POST["first"];
-            $second = $_POST["second"];
-            $third = $_POST["third"];
+            $title = $_POST["title"];
+            $description = $_POST["description"];
+            $location = $_POST["location"];
 
             do{
-                if(empty($id) || empty($first) || empty($second) || empty($third)){
+                if(empty($id) || empty($title) || empty($description) || empty($location)){
                     $errorMessage = "All fields are required";
                     break;
                 }
     
-                $sql = "UPDATE $table 
-                SET $first_column ='$first', $second_column ='$second', $third_column ='$third'
+                $sql = "UPDATE documents 
+                SET title ='$title', description ='$description', location ='$location'
                 WHERE id='$id' ";
     
                 $result = $conn->query($sql);
     
                 if ($result) {
                     echo "record edited successfully";
-                    header("Location: $table.php");
+                    header("Location: documents.php");
                     die;
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -86,23 +76,19 @@ session_start();
             <form  action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
-                <label for="first"> <?php echo $first_column?> </label>
-                <textarea id="first" name="first"> <?php echo $first?> </textarea> <br><br>
+                <label for="title"> <?php echo "Title"?> </label>
+                <textarea id="title" name="title"> <?php echo $title?> </textarea> <br><br>
 
-                <label for="second"> <?php echo $second_column?> </label>
-                <textarea id="second" name="second"> <?php echo $second ?> </textarea> <br><br>
+                <label for="description"> <?php echo "Description"?> </label>
+                <textarea id="description" name="description"> <?php echo $description ?> </textarea> <br><br>
 
-                <label for="third"> <?php echo $third_column?> </label>
-                <textarea id="third" name="third"> <?php echo $third ?> </textarea> <br><br>
+                <label for="location"> <?php echo "file Name"?> </label>
+                <textarea id="location" name="location"> <?php echo $location ?> </textarea> <br><br>
 
                 <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton"> <br> <br>
             </form>
         </div>
 
-
-
     </body>
-
-
 
 </html>

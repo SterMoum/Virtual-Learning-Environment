@@ -41,9 +41,18 @@ session_start();
                         <button class="button-sidebar" role="button">Έγγραφα μαθήματος</button>
                     </a><br>
                 
-                    <a href="homework.php"> 
+                    <a href="assignments.php"> 
                         <button class="button-sidebar" role="button">Εργασίες</button>
-                    </a>
+                    </a> <br>
+                    
+                    <?php if($_SESSION['role'] == 'Tutor'){
+                        ?>
+                        <a href="users.php">
+                            <button class="button-sidebar" role="button" style="color:red">Διαχείριση Χρηστών </button>
+                        </a>
+                        <?php
+                    }
+                    ?>
                 </div>
                 <div class="main-content">
                     <h2 class="h2-style" style="text-align: center;">

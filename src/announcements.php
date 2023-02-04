@@ -5,10 +5,6 @@ session_start();
         header("Location: index.php");
     }
     $_SESSION['table'] = 'announcements';
-    $_SESSION['first'] = 'date';
-    $_SESSION['second'] = 'subject';
-    $_SESSION['third'] = 'message';
-
     connectToDb($conn);
 ?>
 
@@ -46,16 +42,24 @@ session_start();
                         <button class="button-sidebar" role="button">Έγγραφα μαθήματος</button>
                     </a><br>
                 
-                    <a href="homework.php"> 
+                    <a href="assignments.php"> 
                         <button class="button-sidebar" role="button">Εργασίες</button>
-                    </a>
+                    </a> <br>
+                    <?php if($_SESSION['role'] == 'Tutor'){
+                        ?>
+                        <a href="users.php">
+                            <button class="button-sidebar" role="button" style="color:red">Διαχείριση Χρηστών </button>
+                        </a>
+                        <?php
+                    }
+                    ?>
                 </div>
                 <div class="main-content">
                 <?php
                     
                     if ($_SESSION['role'] == "Tutor"){
                         ?>
-                        <a style="font-size: larger;" href="./add.php">Προσθήκη νέας Ανακοίνωσης</a> <br> <br>
+                        <a style="font-size: larger;" href="./addAnnouncement.php">Προσθήκη νέας Ανακοίνωσης</a> <br> <br>
                         <?php
                     }
                     
@@ -69,8 +73,8 @@ session_start();
                              <?php
                                 if ($_SESSION['role'] == "Tutor") {
                                      
-                                    echo "<a style='font-size: larger;' href='./edit.php?id=$row[id]'>[Επεξεργασία] </a>";
-                                    echo " <a style='font-size: larger;' href='./delete.php?id=$row[id]'>[Διαγραφη]</a> "; 
+                                    echo "<a style='font-size: larger;' href='./editAnnouncement.php?id=$row[id]'>[Επεξεργασία] </a>";
+                                    echo "<a style='font-size: larger;' href='./delete.php?id=$row[id]'>[Διαγραφη]</a> "; 
             
                                 }
                              

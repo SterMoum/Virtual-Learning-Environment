@@ -4,19 +4,19 @@ session_start();
     connectToDb($conn);
 
     $id = "";
-    $date = "";
-    $subject = "";
-    $message = "";
+    $title = "";
+    $description = "";
+    $location = "";
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if (!isset($_GET["id"])){
-            header("Location: announcement.php");
+            header("Location: homework.php");
             exit;
         }
-      
+    
         $id = $_GET["id"];
 
-        $sql = "SELECT * FROM announcements WHERE id=$id";
+        $sql = "SELECT * FROM assingments WHERE id=$id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
 
@@ -24,33 +24,33 @@ session_start();
             header("Location: index.php");
             exit;
         }
-         
-        $date = $row['date'];
-        $subject = $row['subject'];
-        $message = $row['message'];
+
+        $title = $row['title'];
+        $description = $row['description'];
+        $location = $row['location'];
 
     }
     else {
             $id = $_POST["id"];
-            $date = $_POST["date"];
-            $subject = $_POST["subject"];
-            $message = $_POST["message"];
+            $title = $_POST["title"];
+            $description = $_POST["description"];
+            $location = $_POST["location"];
 
             do{
-                if(empty($id) || empty($date) || empty($subject) || empty($message)){
+                if(empty($id) || empty($title) || empty($description) || empty($location)){
                     $errorMessage = "All fields are required";
                     break;
                 }
     
-                $sql = "UPDATE announcements 
-                SET date='$date', subject='$subject', message='$message'
+                $sql = "UPDATE documents 
+                SET title ='$title', description ='$description', location ='$location'
                 WHERE id='$id' ";
     
                 $result = $conn->query($sql);
     
                 if ($result) {
                     echo "record edited successfully";
-                    header("Location: announcements.php");
+                    header("Location: documents.php");
                     die;
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -68,7 +68,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./style.css?v=<?php echo time(); ?>" />
-        <title>Edit announcement</title>
+        <title>Login</title>
     </head>
 
     <body>
@@ -76,23 +76,19 @@ session_start();
             <form  action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
-                <label for="date"> <?php echo "Date"?> </label>
-                <textarea id="date" name="date"> <?php echo $date?> </textarea> <br><br>
+                <label for="title"> <?php echo "Title"?> </label>
+                <textarea id="title" name="title"> <?php echo $title?> </textarea> <br><br>
 
-                <label for="subject"> <?php echo "Subject"?> </label>
-                <textarea id="subject" name="subject"> <?php echo $subject ?> </textarea> <br><br>
+                <label for="description"> <?php echo "Description"?> </label>
+                <textarea id="description" name="description"> <?php echo $description ?> </textarea> <br><br>
 
-                <label for="message"> <?php echo "message"?> </label>
-                <textarea id="message" name="message"> <?php echo $message ?> </textarea> <br><br>
+                <label for="location"> <?php echo "file Name"?> </label>
+                <textarea id="location" name="location"> <?php echo $location ?> </textarea> <br><br>
 
                 <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton"> <br> <br>
             </form>
         </div>
 
-
-
     </body>
-
-
 
 </html>

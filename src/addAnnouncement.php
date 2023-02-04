@@ -1,29 +1,23 @@
 <?php
 session_start();
     include("functions.php");
-    
-    $table = $_SESSION['table'];
-    $first_column = $_SESSION['first'];
-    $second_column = $_SESSION['second'];
-    $third_column = $_SESSION['third'];
-
      if (
         isset($_POST['submitButton']) &&
         $_SERVER['REQUEST_METHOD'] == "POST"
         ) { //check if form was submitted
-            $first = $_POST["first"];
-            $second = $_POST["second"];
-            $third = $_POST["third"];
+            $date = $_POST["date"];
+            $subject = $_POST["subject"];
+            $message = $_POST["message"];
 
             connectToDb($conn);
 
-            $sql = "INSERT INTO $table ($first_column, $second_column, $third_column)
-            VALUES ('$first', '$second', '$third')";
+            $sql = "INSERT INTO announcements (date, subject, message)
+            VALUES ('$date', '$subject', '$message')";
 
             if ($conn->query($sql)) {
                 echo "New record created successfully";
 
-                header("Location: $table.php");
+                header("Location: announcements.php");
                 die;
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
@@ -38,7 +32,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./style.css?v=<?php echo time(); ?>" />
-        <title>Add <?php echo $table ?> </title>
+        <title>Add Announcement</title>
     </head>
 
     <body>
@@ -46,17 +40,19 @@ session_start();
             <form  action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
-                <label for="first"> <?php echo $first_column?> </label>
-                <textarea id="first" name="first"></textarea> <br><br>
+                <label for="date">Ημερομηνία</label>
+                <textarea id="date" name="date" placeholder="yyyy-mm-dd"></textarea> <br><br>
 
-                <label for="second"> <?php echo $second_column?> </label>
-                <textarea id="second" name="second"></textarea> <br><br>
+                <label for="subject">Θέμα</label>
+                <textarea id="subject" name="subject"></textarea> <br><br>
 
-                <label for="third"> <?php echo $third_column?> </label>
-                <textarea id="third" name="third"></textarea> <br><br>
+                <label for="message">Μήνυμα</label>
+                <textarea id="message" name="message"></textarea> <br><br>
 
                 <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton"> <br> <br>
             </form>
+        </div>
+
 
 
     </body>
