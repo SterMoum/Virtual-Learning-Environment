@@ -8,6 +8,8 @@ session_start();
     $description = "";
     $location = "";
 
+    $errorMessage = "";
+
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if (!isset($_GET["id"])){
             header("Location: documents.php");
@@ -37,7 +39,7 @@ session_start();
             $location = $_POST["location"];
 
             do{
-                if(empty($id) || empty($title) || empty($description) || empty($location)){
+                if(empty($title) || empty($description) || empty($location)){
                     $errorMessage = "All fields are required";
                     break;
                 }
@@ -58,8 +60,9 @@ session_start();
                 }
     
             }while(true);
-            $conn->close();
+            
         }
+    $conn->close();
 ?>
 
 
@@ -68,7 +71,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./style.css?v=<?php echo time(); ?>" />
-        <title>Login</title>
+        <title>Edit Document</title>
     </head>
 
     <body>
@@ -85,10 +88,10 @@ session_start();
                 <label for="location"> <?php echo "file Name"?> </label>
                 <textarea id="location" name="location"> <?php echo $location ?> </textarea> <br><br>
 
-                <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton"> <br> <br>
+                <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton">
+                <input style="font-size:20px;" type="button" onclick="window.location.href='./documents.php'" value="Πίσω"> <br> <br>
+                <?php echo $errorMessage ?>
             </form>
         </div>
-
     </body>
-
 </html>

@@ -6,4 +6,11 @@ function connectToDb(&$conn){
     }
     return $conn;
 }
+function validateDate($date, $format = 'Y-m-d'){
+    $d = DateTime::createFromFormat($format, $date);
+    return $d && $d->format($format) === $date;
+}
+function stringIsNullOrWhitespace($text){
+    return ctype_space($text) || $text === "" || $text === null;
+}
 ?>

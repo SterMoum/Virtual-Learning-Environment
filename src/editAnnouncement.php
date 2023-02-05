@@ -3,11 +3,7 @@ session_start();
     include("functions.php");
     connectToDb($conn);
 
-    $id = "";
-    $date = "";
-    $subject = "";
-    $message = "";
-
+    $errorMessage = "";
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if (!isset($_GET["id"])){
             header("Location: announcement.php");
@@ -37,7 +33,11 @@ session_start();
             $message = $_POST["message"];
 
             do{
-                if(empty($id) || empty($date) || empty($subject) || empty($message)){
+                if(empty($date) || empty($subject) || empty($message) || 
+                stringIsNullOrWhitespace($date) || 
+                stringIsNullOrWhitespace($subject) || 
+                stringIsNullOrWhitespace($message) || 
+                !validateDate($date) ){
                     $errorMessage = "All fields are required";
                     break;
                 }
@@ -85,7 +85,10 @@ session_start();
                 <label for="message"> <?php echo "message"?> </label>
                 <textarea id="message" name="message"> <?php echo $message ?> </textarea> <br><br>
 
-                <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton"> <br> <br>
+                <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton">
+                <input style="font-size:20px;" type="button" onclick="window.location.href='./announcements.php'" value="Πίσω"> <br> <br>
+
+                <?php echo $errorMessage ?>
             </form>
         </div>
 

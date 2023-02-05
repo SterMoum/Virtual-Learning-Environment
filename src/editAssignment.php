@@ -8,6 +8,7 @@ session_start();
     $location = "";
     $required_files = "";
     $date = "";
+    $errorMessage = "";
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if (!isset($_GET["id"])){
@@ -40,8 +41,8 @@ session_start();
             $date = $_POST["date"];
 
             do{
-                if(empty($id) || empty($goals) || empty($location) || empty($required_files) || empty($date)){
-                    $errorMessage = "All fields are required";
+                if(empty($goals) || empty($location) || empty($required_files) || empty($date) || !validateDate($date)){
+                    $errorMessage = "All fields are required or wrong date format";
                     break;
                 }
     
@@ -91,7 +92,10 @@ session_start();
                 <label for="date"> <?php echo "Ημερομηνία Παράδοσης"?> </label>
                 <textarea id="date" name="date"> <?php echo $date ?> </textarea> <br><br>
 
-                <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton"> <br> <br>
+                <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton">
+                <input style="font-size:20px;" type="button" onclick="window.location.href='./assignments.php'" value="Πίσω"> <br> <br>
+
+                <?php echo $errorMessage ?>
             </form>
         </div>
 

@@ -1,6 +1,7 @@
 <?php
 session_start();
     include("functions.php");
+    $errorMessage = "";
      if (
         isset($_POST['submitButton']) &&
         $_SERVER['REQUEST_METHOD'] == "POST"
@@ -10,18 +11,24 @@ session_start();
             $location = $_POST["location"];
 
             connectToDb($conn);
+            do {
+                if (empty($title) || empty($description) || empty($location)) {
+                    $errorMessage = "All fields are required";
+                    break;
+                }
 
-            $sql = "INSERT INTO documents (title, description, location)
-            VALUES ('$title', '$description', '$location')";
+                $sql = "INSERT INTO documents (title, description, location)
+                        VALUES ('$title', '$description', '$location')";
 
-            if ($conn->query($sql)) {
-                echo "New record created successfully";
+                if ($conn->query($sql)) {
+                    echo "New record created successfully";
 
-                header("Location: documents.php");
-                die;
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+                    header("Location: documents.php");
+                    die;
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+            } while (true);
             $conn->close();
         }
 ?>
@@ -50,7 +57,10 @@ session_start();
                 <label for="location">Τοποθεσία</label>
                 <textarea id="location" name="location"></textarea><br><br>
 
-                <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton"> <br> <br>
+                <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton">
+                <input style="font-size:20px;" type="button" onclick="window.location.href='./documents.php'" value="Πίσω"> <br> <br>
+
+                <?php echo $errorMessage ?>
             </form>
         </div>
     </body>

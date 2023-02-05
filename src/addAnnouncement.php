@@ -1,6 +1,7 @@
 <?php
 session_start();
     include("functions.php");
+    $errorMessage = "";
      if (
         isset($_POST['submitButton']) &&
         $_SERVER['REQUEST_METHOD'] == "POST"
@@ -11,17 +12,27 @@ session_start();
 
             connectToDb($conn);
 
-            $sql = "INSERT INTO announcements (date, subject, message)
-            VALUES ('$date', '$subject', '$message')";
+            do {
+                if (empty($date) || empty($subject) || empty($message) || 
+                stringIsNullOrWhitespace($date) || 
+                stringIsNullOrWhitespace($subject) || 
+                stringIsNullOrWhitespace($message) || 
+                !validateDate($date) ) {
+                    $errorMessage = "All fields are required or date wrong format";
+                    break;
+                }
 
-            if ($conn->query($sql)) {
-                echo "New record created successfully";
+                $sql = "INSERT INTO announcements (date, subject, message)
+                    VALUES ('$date', '$subject', '$message')";
 
-                header("Location: announcements.php");
-                die;
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+                if ($conn->query($sql)) {
+                    echo "New record created successfully";
+                    header("Location: announcements.php");
+                    die;
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+            }while(true);
             $conn->close();
         }
 ?>
@@ -49,14 +60,11 @@ session_start();
                 <label for="message">Μήνυμα</label>
                 <textarea id="message" name="message"></textarea> <br><br>
 
-                <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton"> <br> <br>
+                <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton">
+
+                <input style="font-size:20px;" type="button" onclick="window.location.href='./announcements.php'" value="Πίσω"> <br><br>
+                <?php echo $errorMessage ?>
             </form>
         </div>
-
-
-
     </body>
-
-
-
 </html>

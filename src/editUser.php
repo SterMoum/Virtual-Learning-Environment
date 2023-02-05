@@ -9,6 +9,8 @@ session_start();
     $password = "";
     $role = "";
 
+    $errorMessage = "";
+
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if (!isset($_GET["loginame"])){
             header("Location: users.php");
@@ -61,8 +63,9 @@ session_start();
                 }
     
             }while(true);
-            $conn->close();
+            
         }
+    $conn->close();
 ?>
 
 
@@ -83,10 +86,10 @@ session_start();
                 <textarea id="firstName" name="firstName"> <?php echo $firstName?> </textarea> <br><br>
 
                 <label for="lastName"> <?php echo "lastName"?> </label>
-                <textarea id="lastName" name="lastName"> <?php echo $lastName ?> </textarea> <br><br>
+                <textarea id="lastName" name="lastName"> <?php echo $lastName?> </textarea> <br><br>
 
                 <label for="password"> <?php echo "password"?> </label>
-                <textarea id="password" name="password"> <?php echo $password ?> </textarea> <br><br>
+                <textarea id="password" name="password"> <?php echo $password?> </textarea> <br><br>
 
                 <label for="student">Student</label>
                 <input type="radio" id="student" name="role" value="Student" 
@@ -102,14 +105,11 @@ session_start();
                         }?>> <br><br>
                 
 
-                <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton"> <br> <br>
+                <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton">
+                <input style="font-size:20px;" type="button" onclick="window.location.href='./users.php'" value="Πίσω"> <br><br>
+
+                <?php echo $errorMessage ?>
             </form>
         </div>
-
-
-
     </body>
-
-
-
 </html>
