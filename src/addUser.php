@@ -40,18 +40,17 @@ session_start();
         }
 ?>
 
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./style.css?v=<?php echo time(); ?>" />
-        <title>Add Announcement</title>
+        <title>Add User</title>
     </head>
 
     <body>
         <div class="form">
-            <form  action="" method="post">
+            <form action="" method="post">
                 <input type="hidden" name="loginame" value="<?php echo $loginame;?>">
 
                 <label for="firstName"> <?php echo "Όνομα"?> </label>

@@ -36,7 +36,7 @@ session_start();
             $id = $_POST["id"];
             $title = $_POST["title"];
             $description = $_POST["description"];
-            $location = $_POST["location"];
+            $location = uploadFile("documentToUpload");
 
             do{
                 if(empty($title) || empty($description) || empty($location) ||
@@ -79,7 +79,7 @@ session_start();
 
     <body>
         <div class="form">
-            <form  action="" method="post">
+            <form  action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
                 <label for="title"> <?php echo "Τίτλος"?> </label>
@@ -88,8 +88,8 @@ session_start();
                 <label for="description"> <?php echo "Περιγραφή"?> </label>
                 <textarea id="description" name="description"> <?php echo $description ?> </textarea> <br><br>
 
-                <label for="location"> <?php echo "Όνομα αρχείου"?> </label>
-                <textarea id="location" name="location"> <?php echo $location ?> </textarea> <br><br>
+                <font style="font-size:larger">Αρχείο</font>
+                <input style="font-size:20px;" type="file" name="documentToUpload" id="fileToUpload"> <br> <br>
 
                 <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton">
                 <input style="font-size:20px;" type="button" onclick="window.location.href='./documents.php'" value="Πίσω"> <br><br>

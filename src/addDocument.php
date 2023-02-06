@@ -7,18 +7,16 @@ session_start();
         ) { //check if form was submitted
             $title = $_POST["title"];
             $description = $_POST["description"];
-            $location = $_POST["location"];
-
+            $location = uploadFile("documentToUpload");
+            
             connectToDb($conn);
             do {
                 if (empty($title) || empty($description) || empty($location) ||
                     stringIsNullOrWhitespace($title) || 
-                    stringIsNullOrWhitespace($title) ||
-                    stringIsNullOrWhitespace($title)) {
+                    stringIsNullOrWhitespace($description)) {
                         $errorMessage = "All fields are required";
                         break;
                     }
-
                 $sql = "INSERT INTO documents (title, description, location)
                         VALUES ('$title', '$description', '$location')";
 
@@ -46,7 +44,7 @@ session_start();
 
     <body>
         <div class="form">
-            <form  action="" method="post">
+            <form  action="" method="post" enctype="multipart/form-data">
 
                 <input type="hidden" name="id" value="<?php echo $id?>">
 
@@ -56,9 +54,9 @@ session_start();
                 <label for="description">Περιγραφή</label>
                 <textarea id="description" name="description"></textarea><br><br>
 
-                <label for="location">Όνομα αρχείου</label>
-                <textarea id="location" name="location"></textarea><br><br>
-
+                <font style="font-size:larger">Αρχείο</font>
+                <input style="font-size:20px;" type="file" name="documentToUpload" id="fileToUpload">
+                
                 <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton">
                 <input style="font-size:20px;" type="button" onclick="window.location.href='./documents.php'" value="Πίσω"> <br> <br>
 

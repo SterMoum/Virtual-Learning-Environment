@@ -24,7 +24,6 @@ session_start();
         $date = $row['date'];
         $subject = $row['subject'];
         $message = $row['message'];
-
     }
     else {
             $id = $_POST["id"];

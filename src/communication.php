@@ -1,17 +1,20 @@
 <?php
 session_start();
     include("functions.php");
-    //require("/home/site/libs/PHPMailer-master/src/Exception.php");
-    //require("/home/site/libs/PHPMailer-master/src/PHPMailer.php");
-    //require("/home/site/libs/PHPMailer-master/src/SMTP.php");
-    //error_reporting(0);
-    $errorMessage = "";
+
+    use PHPMailer\PHPMailer\Exception;
+    use PHPMailer\PHPMailer\PHPMailer;
+
+    require '../PHPMailer/Exception.php';
+    require '../PHPMailer/PHPMailer.php';
+    require '../PHPMailer/SMTP.php';
+
+    $displayMessage = "";
     if(!isset($_SESSION['username'])){ //if login in session is not set
         header("Location: index.php");
         
     }
     $loginame = $_SESSION['username'];
-    //$loginame = trim($loginame);
 
     if (isset($_POST['sendButton']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         $sender = $_POST["sender"];
@@ -26,57 +29,45 @@ session_start();
             stringIsNullOrWhitespace($sender) ||
             stringIsNullOrWhitespace($subject) ||
             stringIsNullOrWhitespace($message)){
-                $errorMessage = "All fields required";
+                $displayMessage = "All fields required";
                 break;
             }
-
-
             $sql = "SELECT loginame FROM users WHERE role = 'Tutor' ";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $recipient = $row['loginame'];
-                    $recipient = trim($recipient);
-                    //$recipient = $row['loginame'];
-                    
-                    //echo $recipient;
-                    /*$mail = new PHPMailer\PHPMailer\PHPMailer();
 
+                    $recipient = $row['loginame'];
+
+                    $mail = new PHPMailer();
                     // Settings
                     $mail->IsSMTP();
                     $mail->CharSet = 'UTF-8';
-
                     $mail->Host       = "mail.example.com";    // SMTP server example
                     $mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
                     $mail->SMTPAuth   = true;                  // enable SMTP authentication
                     $mail->Port       = 25;                    // set the SMTP port for the GMAIL server
                     $mail->Username   = "username";            // SMTP account username example
                     $mail->Password   = "password";            // SMTP account password example
-
                     // Content
-                    $mail->setFrom('domain@example.com');   
-                    $mail->addAddress('receipt@domain.com');
-
-                    $mail->isHTML(true);                       // Set email format to HTML
-                    $mail->Subject = 'Here is the subject';
-                    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-                    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-                    $mail->send();*/
-
-                    ini_set("SMTP", "aspmx.l.google.com");
-                    ini_set("sendmail_from", $loginame);
+                    $mail->setFrom($loginame);   
+                    $mail->addAddress($recipient);              
+                    $mail->Subject = $subject;
+                    $mail->Body    = $message;
+                    try{
+                        $mail->send();
+                        $displayMessage = "Message Successfully Sent to Tutors";
+                    } catch(Exception $e){
+                        //echo "Mailer Error: " . $e->errorMessage();
+                        $displayMesasge = "Error!" . $e->errorMessage();
+                    }
                     
-                    $headers = "From: $loginame";
-
-                    mail($recipient, $subject, $message, $headers);
                 }
                 break;
             }else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
-
         } while (true);
         
         $conn->close();
@@ -156,7 +147,7 @@ session_start();
                         </div>
 
                         <div style="display:flex; justify-content: center; text-align: center;font-size:x-large">
-                            <?php echo $errorMessage ?>
+                            <?php echo $displayMessage ?>
                         </div>
                         <hr>
 
@@ -167,13 +158,14 @@ session_start();
                                     connectToDb($conn);
 
                                     $sql = "SELECT loginame FROM users where role = 'Tutor' ";
-
+                                    $tutor_email = "";
                                     $result = $conn->query($sql);
                                     if($result){
                                         while($row = $result->fetch_assoc()){
-                                            $tutor_email = $row['loginame']; ?>
-                                            <a style="font-size:large;" href = "mailto: <?php echo $tutor_email ?>"><?php echo $tutor_email ?></a><br></h3> <?php
+                                            $tutor_email = $row['loginame'];
+                                            ?> <a style="font-size:large;" href = "mailto: <?php echo $tutor_email ?>"><?php echo $tutor_email ?></a><br></h3> <?php 
                                         }
+                                       
                                     }else{
                                         echo "Error: " . $sql . "<br>" . $conn->error;
                                     }

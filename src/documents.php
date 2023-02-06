@@ -23,7 +23,7 @@ include("functions.php");
                     <h1>Έγγραφα μαθήματος</h1>
                     <div style="float:right;">
                         <button class="button-sidebar" role="button" onclick="window.location.href='./logout.php' ">Logout</button>
-                    </div>>
+                    </div>
                 </div>
                 <div class="sidebar">
                     <a href="homepage.php">
@@ -56,14 +56,12 @@ include("functions.php");
                     ?>
                 </div>
                 <div class="main-content">
-
                     <?php
                         if ($_SESSION['role'] == "Tutor"){
                             ?>
                             <a style="font-size: larger;" href="./addDocument.php">Προσθήκη νέου Εγγράφου</a> <br> <br>
                             <?php
                         }
-                    
                     
                     $sql = "select * from documents";
                     $result = $conn->query($sql);
@@ -84,7 +82,7 @@ include("functions.php");
                              
                              
                             <font class="center"><b>Περιγραφή</b>: <?php echo $row['description'] ?> </font> <br> <br>
-                            <font class="center"><a href="../media/<?php echo $row["location"]?>.doc">Download</a></font>
+                            <font class="center"><a href="../uploads/<?php echo $row["location"]?>">Download</a></font>
                             
                             <br><br>
                             <hr>

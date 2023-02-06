@@ -7,18 +7,17 @@ session_start();
         ) { //check if form was submitted
             $id = $_SESSION['id'];
             $goals = $_POST["goals"];
-            $location = $_POST["location"];
             $required_files = $_POST["required_files"];
             $date = $_POST["date"];
+            $location = uploadFile("assignmentToUpload");
 
             connectToDb($conn);
 
             do {
                 if (empty($goals) || empty($location) || empty($required_files) || empty($date) ||
                     stringIsNullOrWhitespace($goals) || 
-                    stringIsNullOrWhitespace($goals) || 
-                    stringIsNullOrWhitespace($goals) ||
-                    stringIsNullOrWhitespace($goals) || 
+                    stringIsNullOrWhitespace($required_files) || 
+                    stringIsNullOrWhitespace($date) ||
                     !validateDate($date)) {
                         $errorMessage = "All fields are required or wrong date format";
                         break;
@@ -58,14 +57,11 @@ session_start();
 
     <body>
         <div class="form">
-            <form  action="" method="post">
+            <form  action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
                 <label for="goals">Στόχοι</label>
                 <textarea id="goals" name="goals"></textarea> <br><br>
-
-                <label for="location">Εκφώνηση</label>
-                <textarea id="location" name="location"></textarea> <br><br>
 
                 <label for="required_files">Παραδοτέα</label>
                 <textarea id="required_files" name="required_files"></textarea> <br><br>
@@ -73,9 +69,12 @@ session_start();
                 <label for="date">Ημερομηνία Παράδοσης</label>
                 <textarea id="date" name="date" placeholder="yyyy-mm-dd"></textarea> <br><br>
 
+                <font style="font-size:larger">Εκφώνηση:</font>
+                <input style="font-size:20px;" type="file" name="assignmentToUpload" id="fileToUpload"> <br><br>
+
                 <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton">
                 <input style="font-size:20px;" type="button" onclick="window.location.href='./assignments.php'" value="Πίσω"> <br>
-                 <br>
+    
                 <?php echo $errorMessage;?>
             </form>
         </div>

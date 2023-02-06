@@ -87,7 +87,7 @@ session_start();
                              
                             
                             <font class="center"><b>Στόχοι</b>: Οι στόχοι της εργασίας είναι: <br> <?php echo $row['goals'] ?> </font><br>
-                            <font class="center"><b>Εκφώνηση</b>:Κατεβάστε την εκφώνηση απο <a href="../media/<?php echo $row["location"]?>.doc"> εδώ </a></font><br>
+                            <font class="center"><b>Εκφώνηση</b>:Κατεβάστε την εκφώνηση απο <a href="../uploads/<?php echo $row["location"]?>"> εδώ </a></font><br>
                             <font class="center"><b>Παραδοτέα:</b><?php echo $row['required_files'] ?> </font><br>
                             <font class="center" style="color: red;"><b>Ημερομηνία Παράδοσης: </b><?php echo $row['date'] ?> </font><br>
                           

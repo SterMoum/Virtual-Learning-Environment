@@ -63,6 +63,7 @@ session_start();
                 <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton">
 
                 <input style="font-size:20px;" type="button" onclick="window.location.href='./announcements.php'" value="Πίσω"> <br><br>
+                
                 <?php echo $errorMessage ?>
             </form>
         </div>

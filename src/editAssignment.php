@@ -36,17 +36,17 @@ session_start();
     else {
             $id = $_POST["id"];
             $goals = $_POST["goals"];
-            $location = $_POST["location"];
             $required_files = $_POST["required_files"];#
             $date = $_POST["date"];
+            $location = uploadFile("assignmentToUpload");
 
             do{
                 if(empty($goals) || empty($location) || empty($required_files) || empty($date) || 
                     stringIsNullOrWhitespace($goals) || 
                     stringIsNullOrWhitespace($location) ||
                     stringIsNullOrWhitespace($required_files) ||
-                    stringIsNullOrWhitespace($date) ||
-                    !validateDate($date)){
+                    stringIsNullOrWhitespace($date))
+                    {
                         $errorMessage = "All fields are required or wrong date format";
                         break;
                     }
@@ -67,8 +67,9 @@ session_start();
                 }
     
             }while(true);
-            $conn->close();
+            
         }
+        $conn->close();
 ?>
 
 
@@ -77,25 +78,25 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./style.css?v=<?php echo time(); ?>" />
-        <title>Login</title>
+        <title>Edit Assignment</title>
     </head>
 
     <body>
         <div class="form">
-            <form  action="" method="post">
+            <form  action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
                 <label for="goals"> <?php echo "Στόχοι"?> </label>
                 <textarea id="goals" name="goals"> <?php echo $goals?> </textarea> <br><br>
-
-                <label for="location"> <?php echo "Όνομα αρχείου"?> </label>
-                <textarea id="location" name="location"> <?php echo $location ?> </textarea> <br><br>
 
                 <label for="required_files"> <?php echo "Απαιτούμενα αρχεία"?> </label>
                 <textarea id="required_files" name="required_files"> <?php echo $required_files ?> </textarea> <br><br>
 
                 <label for="date"> <?php echo "Ημερομηνία Παράδοσης"?> </label>
                 <textarea id="date" name="date"> <?php echo $date ?> </textarea> <br><br>
+
+                <font style="font-size:larger">Εκφώνηση</font>
+                <input style="font-size:20px;" type="file" name="assignmentToUpload" id="fileToUpload"> <br> <br>
 
                 <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton">
                 <input style="font-size:20px;" type="button" onclick="window.location.href='./assignments.php'" value="Πίσω"> <br> <br>
