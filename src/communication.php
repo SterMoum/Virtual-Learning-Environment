@@ -11,6 +11,7 @@ session_start();
         
     }
     $loginame = $_SESSION['username'];
+    //$loginame = trim($loginame);
 
     if (isset($_POST['sendButton']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         $sender = $_POST["sender"];
@@ -36,7 +37,7 @@ session_start();
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $recipient = $row['loginame'];
-                    echo $recipient;
+                    $recipient = trim($recipient);
                     //$recipient = $row['loginame'];
                     
                     //echo $recipient;
@@ -136,7 +137,7 @@ session_start();
                     <h2><b>Αποστολή e-mail μέσω web φόρμας</b></h2>
                     <form action="" method="post">
                         <label for="sender"><h3><b>Αποστολέας: </b></h3></label>
-                        <textarea id="sender" name="sender" readonly> <?php echo $loginame ?> </textarea>
+                        <textarea id="sender" name="sender" > <?php $loginame = trim($loginame); echo $loginame ?> </textarea>
                         
                         <br>
 
@@ -161,9 +162,22 @@ session_start();
 
                         <h2><b>Αποστολή e-mail με χρήση e-mail διεύθυνσης</b></h2>
                             <h3>Εναλλακτικά μπορείτε να αποστείλετε e-mail στην 
-                                παρακάτω διεύθυνση ηλεκτρονικού ταχυδρομείου 
-                                <a href = "mailto: tutor@csd.auth.gr">tutor@csd.auth.gr</a></h3>
+                                παρακάτω διεύθυνση ηλεκτρονικού ταχυδρομείου <br>
+                                <?php 
+                                    connectToDb($conn);
 
+                                    $sql = "SELECT loginame FROM users where role = 'Tutor' ";
+
+                                    $result = $conn->query($sql);
+                                    if($result){
+                                        while($row = $result->fetch_assoc()){
+                                            $tutor_email = $row['loginame']; ?>
+                                            <a style="font-size:large;" href = "mailto: <?php echo $tutor_email ?>"><?php echo $tutor_email ?></a><br></h3> <?php
+                                        }
+                                    }else{
+                                        echo "Error: " . $sql . "<br>" . $conn->error;
+                                    }
+                               ?>
                     </form>
             </div>
         </div>
