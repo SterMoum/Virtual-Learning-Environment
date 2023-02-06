@@ -39,9 +39,12 @@ session_start();
             $location = $_POST["location"];
 
             do{
-                if(empty($title) || empty($description) || empty($location)){
-                    $errorMessage = "All fields are required";
-                    break;
+                if(empty($title) || empty($description) || empty($location) ||
+                    stringIsNullOrWhitespace($title) || 
+                    stringIsNullOrWhitespace($description) || 
+                    stringIsNullOrWhitespace($location)){
+                        $errorMessage = "All fields are required";
+                        break;
                 }
     
                 $sql = "UPDATE documents 
@@ -79,17 +82,18 @@ session_start();
             <form  action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
-                <label for="title"> <?php echo "Title"?> </label>
+                <label for="title"> <?php echo "Τίτλος"?> </label>
                 <textarea id="title" name="title"> <?php echo $title?> </textarea> <br><br>
 
-                <label for="description"> <?php echo "Description"?> </label>
+                <label for="description"> <?php echo "Περιγραφή"?> </label>
                 <textarea id="description" name="description"> <?php echo $description ?> </textarea> <br><br>
 
-                <label for="location"> <?php echo "file Name"?> </label>
+                <label for="location"> <?php echo "Όνομα αρχείου"?> </label>
                 <textarea id="location" name="location"> <?php echo $location ?> </textarea> <br><br>
 
                 <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton">
-                <input style="font-size:20px;" type="button" onclick="window.location.href='./documents.php'" value="Πίσω"> <br> <br>
+                <input style="font-size:20px;" type="button" onclick="window.location.href='./documents.php'" value="Πίσω"> <br><br>
+                
                 <?php echo $errorMessage ?>
             </form>
         </div>

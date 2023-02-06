@@ -2,7 +2,7 @@ html,body{
   height: 100%;
   margin: 0;
   overflow-x: hidden;
-  font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+  font-family:'Times New Roman', Times, serif;
 
 }
 
@@ -120,10 +120,11 @@ label{
 }
 
 textarea{
-  overflow:hidden;
-  resize:none;
-  font-size: large;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 16px;
+  line-height:1.4;
+  width:100%;
+  font-family:'Times New Roman', Times, serif;
+  font-size: x-large;
 }
 #submit-button{
   display: block; 

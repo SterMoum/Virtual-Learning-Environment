@@ -2,8 +2,8 @@
 session_start();
     include("functions.php");
     $errorMessage = "";
-     if (
-        isset($_POST['submitButton']) &&
+
+     if (isset($_POST['submitButton']) &&
         $_SERVER['REQUEST_METHOD'] == "POST"
         ) { //check if form was submitted
             $date = $_POST["date"];

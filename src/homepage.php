@@ -21,8 +21,9 @@ session_start();
 
                 <div class="page-title">
                     <h1>Αρχική Σελίδα</h1>
-                    <a href="./logout.php" style="float:right;">
-                        <button class="button-sidebar" role="button">Logout</button></a>
+                    <div style="float:right;">
+                        <button class="button-sidebar" role="button" onclick="window.location.href='./logout.php' ">Logout</button>
+                    </div>
                 </div>
 
                 <div class="sidebar">

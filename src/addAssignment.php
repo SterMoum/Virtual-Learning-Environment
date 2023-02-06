@@ -2,8 +2,7 @@
 session_start();
     include("functions.php");
     $errorMessage = "";
-     if (
-        isset($_POST['submitButton']) &&
+     if (isset($_POST['submitButton']) &&
         $_SERVER['REQUEST_METHOD'] == "POST"
         ) { //check if form was submitted
             $id = $_SESSION['id'];
@@ -15,10 +14,15 @@ session_start();
             connectToDb($conn);
 
             do {
-                if (empty($goals) || empty($location) || empty($required_files) || empty($date)) {
-                    $errorMessage = "All fields are required";
-                    break;
-                }
+                if (empty($goals) || empty($location) || empty($required_files) || empty($date) ||
+                    stringIsNullOrWhitespace($goals) || 
+                    stringIsNullOrWhitespace($goals) || 
+                    stringIsNullOrWhitespace($goals) ||
+                    stringIsNullOrWhitespace($goals) || 
+                    !validateDate($date)) {
+                        $errorMessage = "All fields are required or wrong date format";
+                        break;
+                    }
                 //insert to assignments
                 $sql1 = "INSERT INTO assignments (goals, location, required_files,date)
                         VALUES ('$goals', '$location', '$required_files', '$date')";
@@ -49,7 +53,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./style.css?v=<?php echo time(); ?>" />
-        <title>Add homework</title>
+        <title>Add Assignment</title>
     </head>
 
     <body>
@@ -67,7 +71,7 @@ session_start();
                 <textarea id="required_files" name="required_files"></textarea> <br><br>
 
                 <label for="date">Ημερομηνία Παράδοσης</label>
-                <textarea id="date" name="date"></textarea> <br><br>
+                <textarea id="date" name="date" placeholder="yyyy-mm-dd"></textarea> <br><br>
 
                 <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton">
                 <input style="font-size:20px;" type="button" onclick="window.location.href='./assignments.php'" value="Πίσω"> <br>

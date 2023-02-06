@@ -42,7 +42,12 @@ session_start();
             $role = $_POST["role"];
 
             do{
-                if(empty($loginame) || empty($firstName) || empty($lastName) || empty($password) || empty($role)){
+                if(empty($loginame) || empty($firstName) || empty($lastName) || empty($password) || empty($role) ||
+                stringIsNullOrWhitespace($loginame) ||
+                stringIsNullOrWhitespace($firstName) ||
+                stringIsNullOrWhitespace($lastName) ||
+                stringIsNullOrWhitespace($password) ||
+                stringIsNullOrWhitespace($role)){
                     $errorMessage = "All fields are required";
                     break;
                 }
@@ -82,13 +87,13 @@ session_start();
             <form  action="" method="post">
                 <input type="hidden" name="loginame" value="<?php echo $loginame;?>">
 
-                <label for="firstName"> <?php echo "firstName"?> </label>
+                <label for="firstName"> <?php echo "Όνομα"?> </label>
                 <textarea id="firstName" name="firstName"> <?php echo $firstName?> </textarea> <br><br>
 
-                <label for="lastName"> <?php echo "lastName"?> </label>
+                <label for="lastName"> <?php echo "Επίθετο"?> </label>
                 <textarea id="lastName" name="lastName"> <?php echo $lastName?> </textarea> <br><br>
 
-                <label for="password"> <?php echo "password"?> </label>
+                <label for="password"> <?php echo "Κωδικός"?> </label>
                 <textarea id="password" name="password"> <?php echo $password?> </textarea> <br><br>
 
                 <label for="student">Student</label>

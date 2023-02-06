@@ -2,8 +2,7 @@
 session_start();
     include("functions.php");
     $errorMessage = "";
-     if (
-        isset($_POST['submitButton']) &&
+     if (isset($_POST['submitButton']) &&
         $_SERVER['REQUEST_METHOD'] == "POST"
         ) { //check if form was submitted
             $title = $_POST["title"];
@@ -12,10 +11,13 @@ session_start();
 
             connectToDb($conn);
             do {
-                if (empty($title) || empty($description) || empty($location)) {
-                    $errorMessage = "All fields are required";
-                    break;
-                }
+                if (empty($title) || empty($description) || empty($location) ||
+                    stringIsNullOrWhitespace($title) || 
+                    stringIsNullOrWhitespace($title) ||
+                    stringIsNullOrWhitespace($title)) {
+                        $errorMessage = "All fields are required";
+                        break;
+                    }
 
                 $sql = "INSERT INTO documents (title, description, location)
                         VALUES ('$title', '$description', '$location')";
@@ -54,7 +56,7 @@ session_start();
                 <label for="description">Περιγραφή</label>
                 <textarea id="description" name="description"></textarea><br><br>
 
-                <label for="location">Τοποθεσία</label>
+                <label for="location">Όνομα αρχείου</label>
                 <textarea id="location" name="location"></textarea><br><br>
 
                 <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton">

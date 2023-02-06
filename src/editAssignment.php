@@ -41,10 +41,15 @@ session_start();
             $date = $_POST["date"];
 
             do{
-                if(empty($goals) || empty($location) || empty($required_files) || empty($date) || !validateDate($date)){
-                    $errorMessage = "All fields are required or wrong date format";
-                    break;
-                }
+                if(empty($goals) || empty($location) || empty($required_files) || empty($date) || 
+                    stringIsNullOrWhitespace($goals) || 
+                    stringIsNullOrWhitespace($location) ||
+                    stringIsNullOrWhitespace($required_files) ||
+                    stringIsNullOrWhitespace($date) ||
+                    !validateDate($date)){
+                        $errorMessage = "All fields are required or wrong date format";
+                        break;
+                    }
     
                 $sql = "UPDATE assignments 
                 SET goals ='$goals', location ='$location', required_files ='$required_files', date = '$date'
@@ -80,10 +85,10 @@ session_start();
             <form  action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
-                <label for="goals"> <?php echo "Goals"?> </label>
+                <label for="goals"> <?php echo "Στόχοι"?> </label>
                 <textarea id="goals" name="goals"> <?php echo $goals?> </textarea> <br><br>
 
-                <label for="location"> <?php echo "File Name"?> </label>
+                <label for="location"> <?php echo "Όνομα αρχείου"?> </label>
                 <textarea id="location" name="location"> <?php echo $location ?> </textarea> <br><br>
 
                 <label for="required_files"> <?php echo "Απαιτούμενα αρχεία"?> </label>
