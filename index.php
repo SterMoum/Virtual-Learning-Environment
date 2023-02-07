@@ -1,7 +1,7 @@
 <?php 
 session_start();
     include("functions.php");
-
+    $errorMessage = "";
     if(isset($_SESSION['username'])) {
         header("Location: homepage.php"); // redirects them to homepage
         exit; // for good measure
@@ -28,8 +28,14 @@ session_start();
                     header("Location: homepage.php");
                     die;
                     
+                }else{
+                    $errorMessage = "incorect password";
                 }
+            }else{
+                $errorMessage = "No user with these credentials";
             }
+        }else{
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }    
     }
 ?>
@@ -53,6 +59,7 @@ session_start();
 
                 <input style="font-size:20px;" type="submit" value="Είσοδος" name="submitButton"> <br> <br>
                 
+                <font class="center"><?php echo $errorMessage ?></font>
             </form>
         </div>
 
