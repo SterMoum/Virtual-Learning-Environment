@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 07, 2023 at 12:18 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Host: webpagesdb.it.auth.gr:3306
+-- Generation Time: Feb 07, 2023 at 10:32 PM
+-- Server version: 10.1.48-MariaDB-0ubuntu0.18.04.1
+-- PHP Version: 7.1.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `stermoum`
+-- Database: `student3620`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +33,7 @@ CREATE TABLE `announcements` (
   `date` date NOT NULL,
   `subject` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -46,7 +47,7 @@ CREATE TABLE `assignments` (
   `location` varchar(255) NOT NULL,
   `required_files` varchar(255) NOT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,7 @@ CREATE TABLE `documents` (
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -73,7 +74,7 @@ CREATE TABLE `users` (
   `loginame` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` enum('Student','Tutor') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -83,7 +84,7 @@ INSERT INTO `users` (`firstName`, `lastName`, `loginame`, `password`, `role`) VA
 ('Παναγιώτης         ', 'Μολιατσίδης         ', 'panosmol@csd.auth.gr', '321321', 'Student'),
 ('Στεργιος', 'Μουμτζης', 'stermoum@csd.auth.gr', '123456', 'Tutor'),
 ('Chris', 'Apostol', 'sterthegramer@gmail.com', '123', 'Tutor'),
-('thomas ', 'fusekis ', 'thomas321@gmail.com', '123 ', 'Student');
+('thomas', 'fusekis', 'thomas321@gmail.com', '123', 'Student');
 
 --
 -- Indexes for dumped tables
@@ -112,12 +113,8 @@ ALTER TABLE `documents`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`loginame`);
+COMMIT;
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
@@ -135,7 +132,6 @@ ALTER TABLE `assignments`
 ALTER TABLE `documents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
