@@ -1,4 +1,3 @@
-<!--Μπορείτε να δείτε online τη σελίδα και στο https://users.auth.gr/stermoum/ergasiaEPDmerosA/index.html -->
 <?php
 session_start();
     include("functions.php");
@@ -74,6 +73,7 @@ session_start();
                 ?>
                 </thead>
                 <?php   
+                
                 if ($result = $conn->query($query)) {
                 while ($row = $result->fetch_assoc()) {
                     $firstName = $row["firstName"];
@@ -81,6 +81,8 @@ session_start();
                     $loginame = $row["loginame"];
                     $password = $row["password"];
                     $role = $row["role"];
+
+                    $password = hidePwd($password);
 
                     echo "<tr> 
                                 <td>$firstName</td> 
@@ -97,7 +99,7 @@ session_start();
             ?>
             </div>
             <div style="text-align:center;float:left;">
-                <a style="font-size: larger;" href='./addUser.php' >Προσθήκη Χρήστη</button
+                <a style="font-size: larger;" href='./addUser.php' >Προσθήκη Χρήστη
             </div> 
         </div>
     </body>

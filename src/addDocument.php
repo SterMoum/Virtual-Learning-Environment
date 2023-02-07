@@ -55,7 +55,7 @@ session_start();
                 <textarea id="description" name="description"></textarea><br><br>
 
                 <font style="font-size:larger">Αρχείο</font>
-                <input style="font-size:20px;" type="file" name="documentToUpload" id="fileToUpload">
+                <input style="font-size:20px;" type="file" name="documentToUpload" id="fileToUpload"><br><br>
                 
                 <input style="font-size:20px;" type="submit" value="Προσθήκη" name="submitButton">
                 <input style="font-size:20px;" type="button" onclick="window.location.href='./documents.php'" value="Πίσω"> <br> <br>

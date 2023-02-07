@@ -88,13 +88,13 @@ session_start();
                 <input type="hidden" name="loginame" value="<?php echo $loginame;?>">
 
                 <label for="firstName"> <?php echo "Όνομα"?> </label>
-                <textarea id="firstName" name="firstName"> <?php echo $firstName?> </textarea> <br><br>
+                <textarea id="firstName" name="firstName"><?php echo $firstName?></textarea><br><br>
 
                 <label for="lastName"> <?php echo "Επίθετο"?> </label>
-                <textarea id="lastName" name="lastName"> <?php echo $lastName?> </textarea> <br><br>
+                <textarea id="lastName" name="lastName"><?php echo $lastName?></textarea><br><br>
 
                 <label for="password"> <?php echo "Κωδικός"?> </label>
-                <textarea id="password" name="password"> <?php echo $password?> </textarea> <br><br>
+                <textarea id="password" name="password"><?php echo $password?></textarea><br><br>
 
                 <label for="student">Student</label>
                 <input type="radio" id="student" name="role" value="Student" 

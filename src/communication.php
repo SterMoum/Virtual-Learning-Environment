@@ -128,7 +128,7 @@ session_start();
                     <h2><b>Αποστολή e-mail μέσω web φόρμας</b></h2>
                     <form action="" method="post">
                         <label for="sender"><h3><b>Αποστολέας: </b></h3></label>
-                        <textarea id="sender" name="sender" > <?php $loginame = trim($loginame); echo $loginame ?> </textarea>
+                        <textarea id="sender" name="sender" ><?php echo $loginame ?></textarea>
                         
                         <br>
 

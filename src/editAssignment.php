@@ -87,16 +87,16 @@ session_start();
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
                 <label for="goals"> <?php echo "Στόχοι"?> </label>
-                <textarea id="goals" name="goals"> <?php echo $goals?> </textarea> <br><br>
+                <textarea id="goals" name="goals"><?php echo $goals?></textarea> <br><br>
 
                 <label for="required_files"> <?php echo "Απαιτούμενα αρχεία"?> </label>
-                <textarea id="required_files" name="required_files"> <?php echo $required_files ?> </textarea> <br><br>
+                <textarea id="required_files" name="required_files"><?php echo $required_files ?></textarea><br><br>
 
                 <label for="date"> <?php echo "Ημερομηνία Παράδοσης"?> </label>
-                <textarea id="date" name="date"> <?php echo $date ?> </textarea> <br><br>
+                <textarea id="date" name="date"><?php echo $date ?></textarea><br><br>
 
                 <font style="font-size:larger">Εκφώνηση</font>
-                <input style="font-size:20px;" type="file" name="assignmentToUpload" id="fileToUpload"> <br> <br>
+                <input style="font-size:20px;" type="file" name="assignmentToUpload" id="fileToUpload"><br><br>
 
                 <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton">
                 <input style="font-size:20px;" type="button" onclick="window.location.href='./assignments.php'" value="Πίσω"> <br> <br>

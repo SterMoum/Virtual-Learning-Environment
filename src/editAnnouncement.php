@@ -76,13 +76,13 @@ session_start();
                 <input type="hidden" name="id" value="<?php echo $id;?>">
 
                 <label for="date"> <?php echo "Ημερομηνία Ανάρτησης"?> </label>
-                <textarea id="date" name="date"> <?php echo $date?> </textarea> <br><br>
+                <textarea id="date" name="date"><?php echo $date?></textarea><br><br>
 
                 <label for="subject"> <?php echo "Θέμα"?> </label>
-                <textarea id="subject" name="subject"> <?php echo $subject ?> </textarea> <br><br>
+                <textarea id="subject" name="subject"><?php echo $subject ?></textarea> <br><br>
 
                 <label for="message"> <?php echo "Κείμενο"?> </label>
-                <textarea id="message" name="message"> <?php echo $message ?> </textarea> <br><br>
+                <textarea id="message" name="message"><?php echo $message ?></textarea> <br><br>
 
                 <input style="font-size:20px;" type="submit" value="Ενημέρωση" name="submitButton">
                 <input style="font-size:20px;" type="button" onclick="window.location.href='./announcements.php'" value="Πίσω"> <br> <br>

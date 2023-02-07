@@ -32,4 +32,13 @@ function uploadFile($pwd)
     return $path_filename_ext;
 }
 
+function hidePwd($pwd){
+    $length = strlen($pwd);
+    $encryptPwd = "";
+    for($i = 0; $i < $length; $i++){
+        $encryptPwd .= '*';
+    }
+    
+    return $encryptPwd;
+}
 ?>
