@@ -1,10 +1,10 @@
 <?php
 function connectToDb(&$conn){
     //connection for localhost
-    //$conn = new mysqli('localhost', 'root', '', 'stermoum');
+    $conn = new mysqli('localhost', 'root', '', 'stermoum');
 
     //connection for online host
-    $conn = new mysqli('webpagesdb.it.auth.gr:3306', 'stermoum', '12345', 'student3620');
+    //$conn = new mysqli('webpagesdb.it.auth.gr:3306', 'stermoum', '12345', 'student3620');
     if ($conn->connect_error) {
         die('Connection Failed : ' . $conn->connect_error);
     }
