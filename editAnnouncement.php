@@ -27,16 +27,14 @@ session_start();
     }
     else {
             $id = $_POST["id"];
-            $date = $_POST["date"];
+            $date = date("Y-m-d");
             $subject = $_POST["subject"];
             $message = $_POST["message"];
 
             do{
-                if(empty($date) || empty($subject) || empty($message) || 
-                stringIsNullOrWhitespace($date) || 
+                if(empty($subject) || empty($message) || 
                 stringIsNullOrWhitespace($subject) || 
-                stringIsNullOrWhitespace($message) || 
-                !validateDate($date) ){
+                stringIsNullOrWhitespace($message)){
                     $errorMessage = "All fields are required";
                     break;
                 }
@@ -74,9 +72,6 @@ session_start();
         <div class="form">
             <form  action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
-
-                <label for="date"> <?php echo "Ημερομηνία Ανάρτησης"?> </label>
-                <textarea id="date" name="date"><?php echo $date?></textarea><br><br>
 
                 <label for="subject"> <?php echo "Θέμα"?> </label>
                 <textarea id="subject" name="subject"><?php echo $subject ?></textarea> <br><br>
