@@ -4,25 +4,26 @@ session_start();
     if(!isset($_SESSION['username'])){ //if login in session is not set
         header("Location: index.php");
     }
-    $_SESSION['table'] = 'assignments';
+    $_SESSION['table'] = 'announcements';
+    //connect to database
     connectToDb($conn);
-    
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./style/style.css?v=<?php echo time(); ?>">
-        <title>Assignments</title>
+        <link rel="stylesheet" href="../style/style.css?v=<?php echo time(); ?>">
+        <title>Announcements</title>
     </head>
 
     <body>
-        <a name="top"></a>
 
+        <a name="top"></a>
+        
         <div class="container">
                 <div class="page-title">
-                    <h1>Εργασίες</h1>
+                    <h1>Ανακοινώσεις</h1>
                     <div style="float:right;">
                         <button class="button-sidebar" role="button" onclick="window.location.href='./logout.php' ">Logout</button>
                     </div>
@@ -47,7 +48,6 @@ session_start();
                     <a href="assignments.php"> 
                         <button class="button-sidebar" role="button">Εργασίες</button>
                     </a> <br>
-
                     <?php if($_SESSION['role'] == 'Tutor'){
                         ?>
                         <a href="users.php">
@@ -57,53 +57,50 @@ session_start();
                     }
                     ?>
                 </div>
-
+                
                 <div class="main-content">
-
-                    <?php
-                        if ($_SESSION['role'] == "Tutor"){
-                            ?>
-                            <a style="font-size: larger;" href="./addAssignment.php">Προσθήκη νέας Εργασίας</a> <br> <br>
-                            <?php
+                <?php
+                    
+                    if ($_SESSION['role'] == "Tutor"){
+                        ?>
+                        <a style="font-size: larger;" href="./addAnnouncement.php">Προσθήκη νέας Ανακοίνωσης</a> <br> <br>
+                        <?php
                     }
                     
-                    $sql = "select * from assignments";
+                    $sql = "select * from announcements";
                     $result = $conn->query($sql);
+                    
                     if($result->num_rows > 0){
                         while($row = $result->fetch_assoc()){
-                            $_SESSION['id'] = $row['id'] + 1;
                              ?> 
-                             <h2 class="h2-style">Εργασία <?php echo $row['id']?> </h2>
+                             <h2 class="h2-style">Ανακοίνωση <?php echo $row['id'] ?> </h2>
                              <?php
                                 if ($_SESSION['role'] == "Tutor") {
                                      
-                                    echo "<a style='font-size: larger;' href='./editAssignment.php?id=$row[id]'>[Επεξεργασία] </a>";
+                                    echo "<a style='font-size: larger;' href='./editAnnouncement.php?id=$row[id]'>[Επεξεργασία] </a>";
                                     echo "<a style='font-size: larger;' href='./delete.php?id=$row[id]'>[Διαγραφη]</a> "; 
             
                                 }
                              
                              ?>
-                             
-                            
-                            <font class="center"><b>Στόχοι </b>: Οι στόχοι της εργασίας είναι: <br> <?php echo $row['goals'] ?> </font><br>
-                            <font class="center"><b>Εκφώνηση </b>: Κατεβάστε την εκφώνηση απο -> <a href="./<?php echo $row["location"]?>">εδώ</a></font><br>
-                            <font class="center"><b>Παραδοτέα: </b><?php echo $row['required_files'] ?> </font><br>
-                            <font class="center" style="color: red;"><b> Ημερομηνία Παράδοσης: </b><?php echo $row['date'] ?> </font><br>
-                          
+                             <br><br>
+
+                            <font class="center"><b>Ημερομηνία</b>: <?php echo $row['date'] ?> </font> <br> <br>
+                            <font class="center"><b>Θέμα</b>: <?php echo $row['subject'] ?> </font> <br> <br>
+                            <font class="center"><?php echo $row['message'] ?> </font> <br> <br>
+                           
                             <br><br>
                             <hr>
                             <?php 
                         }
                     } else{
 
-                        ?> <h2 class="h2-style">ΔΕΝ ΥΠΑΡΧΟΥΝ ΕΡΓΑΣΙΕΣ </h2> <?php 
+                        ?> <h2 class="h2-style">ΔΕΝ ΥΠΑΡΧΟΥΝ ΑΝΑΚΟΙΝΩΣΕΙΣ </h2> <?php 
                     }
                     ?>
                 
-                        <a style="float: right; color: black;" href="#top"><font size="+3">Back to top</font></a>
+                    <a style="float: right; color: black;" href="#top"><font size="+3">Back to top</font></a>
 
-                        <hr>
-                    </div>
                 </div>
             </div>
         </body>

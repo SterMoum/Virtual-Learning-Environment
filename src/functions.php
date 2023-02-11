@@ -22,7 +22,7 @@ function uploadFile($pwd)
     $path_filename_ext = "";
     if (($_FILES[$pwd]['name'] != "")) {
         // Where the file is going to be stored
-        $target_dir = "./uploads/";
+        $target_dir = "../uploads/";
         $file = $_FILES[$pwd]['name'];
         $path = pathinfo($file);
         $filename = $path['filename'];

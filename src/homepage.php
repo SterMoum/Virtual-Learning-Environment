@@ -10,7 +10,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./style/style.css?v=<?php echo time();?>">
+        <link rel="stylesheet" href="../style/style.css?v=<?php echo time(); ?>">
         <title>Homepage</title>
     </head>
 
@@ -74,7 +74,7 @@ session_start();
 
                     <font size="+2"><b>Εργασίες:</b> Θα βρείτε όλες τις εργασίες που αναρτώνται ανά πάσα στιγμή</font> <br> <br>
                         
-                        <img src="./media/c_1.png" class="image-homepage">
+                        <img src="../media/c_1.png" class="image-homepage">
                 </div>
             </div>
         </body>

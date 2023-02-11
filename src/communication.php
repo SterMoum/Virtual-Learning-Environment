@@ -5,9 +5,9 @@ session_start();
     use PHPMailer\PHPMailer\Exception;
     use PHPMailer\PHPMailer\PHPMailer;
 
-    require './PHPMailer/Exception.php';
-    require './PHPMailer/PHPMailer.php';
-    require './PHPMailer/SMTP.php';
+    require '../PHPMailer/Exception.php';
+    require '../PHPMailer/PHPMailer.php';
+    require '../PHPMailer/SMTP.php';
 
     $displayMessage = "";
     if(!isset($_SESSION['username'])){ //if login in session is not set
@@ -76,7 +76,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./style/style.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="../style/style.css?v=<?php echo time(); ?>">
         <title>Communication</title>
     </head>
     

@@ -49,7 +49,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./style/style.css?v=<?php echo time(); ?>" />
+        <link rel="stylesheet" href="../style/style.css?v=<?php echo time(); ?>" />
         <title>Add User</title>
     </head>
 
