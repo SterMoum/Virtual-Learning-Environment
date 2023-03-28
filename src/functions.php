@@ -8,7 +8,7 @@ function connectToDb(&$conn){
     if ($conn->connect_error) {
         die('Connection Failed : ' . $conn->connect_error);
     }
-    return $conn;
+    //return $conn;
 }
 function validateDate($date, $format = 'Y-m-d'){
     $d = DateTime::createFromFormat($format, $date);
